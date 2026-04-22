@@ -8,6 +8,7 @@
     <!-- CSS Links -->
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     
     <!-- Lucide Icons -->
     <script src="https://cdn.jsdelivr.net/npm/lucide/dist/umd/lucide.js"></script>
@@ -71,6 +72,13 @@
             .hero-booking-grid { gap: var(--s-8) !important; }
             .booking-hero-h1 { font-size: 32px !important; }
             .hover-snapshot-stack { height: 300px !important; }
+            .provisions-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            .provision-card { 
+                display: grid !important; 
+                grid-template-columns: 80px 1fr auto auto !important; 
+                gap: 15px !important; 
+                align-items: center !important; 
+            }
         }
 
         /* [LOCKED] TABLET TIER (481PX - 1024PX) */
@@ -414,7 +422,7 @@
             <div class="container">
                 <div style="margin-bottom: var(--s-10);">
                     <h2 style="font-size: var(--fs-h2); text-align: center;">3. Suite <span style="color: var(--secondary);">Provisions</span></h2>
-                     <div class="grid grid-3 provisions-grid" style="gap: var(--s-8);">
+                     <div class="grid provisions-grid" style="grid-template-columns: repeat(2, 1fr); gap: var(--s-8);">
                     <div class="provision-card" style="display: flex; gap: 20px; align-items: center; background: var(--bg-card); padding: 20px; border-radius: 16px; border: 1px solid var(--border);">
                          <div style="width: 80px; height: 80px; background: url('../assets/images/booking/Whiskey Vault Sample.jpg') center/cover; border-radius: 12px; flex-shrink: 0;"></div>
                          <div style="flex: 1;">

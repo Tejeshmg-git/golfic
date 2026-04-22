@@ -8,6 +8,7 @@
     <!-- CSS Links -->
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -105,11 +106,16 @@
             align-items: center;
             gap: 12px;
             margin-bottom: 30px;
-            color: var(--text);
+            color: var(--primary);
+            transition: var(--transition);
         }
 
-        .auth-logo i { color: var(--secondary); width: 28px; height: 28px; }
-        .auth-logo span { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; letter-spacing: 2px; }
+        body.dark-layout .auth-logo {
+            color: var(--secondary);
+        }
+
+        .auth-logo i { color: inherit; width: 28px; height: 28px; }
+        .auth-logo span { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; letter-spacing: 2px; color: inherit; }
 
         .auth-title {
             font-family: var(--font-heading);
@@ -286,12 +292,45 @@
         .auth-footer a:hover {
             text-decoration: underline;
         }
+
+        /* Password Toggle Precision */
+        .password-toggle {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--text-dim);
+            transition: var(--transition);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            background: transparent;
+            border: none;
+            padding: 0;
+        }
+
+        .password-toggle:hover {
+            color: var(--secondary);
+        }
+
+        .password-toggle i,
+        .password-toggle svg {
+            position: static !important;
+            left: auto !important;
+            width: 18px !important;
+            height: 18px !important;
+        }
+
+        .auth-input {
+            padding-right: 50px !important; /* Make room for the eye */
+        }
     </style>
 </head>
 <body class="loading">
 
     <nav class="auth-nav">
-        <a href="index.html" class="back-home">
+        <a href="../index.html" class="back-home">
             <i data-lucide="chevron-left" style="width: 18px;"></i>
             HOME
         </a>
@@ -302,10 +341,10 @@
 
     <main class="auth-portal">
         <div class="auth-card reveal">
-            <div class="auth-logo reveal">
+            <a href="../index.html" class="auth-logo reveal">
                 <i data-lucide="target"></i>
                 <span>GOLFIC</span>
-            </div>
+            </a>
 
             <h1 class="auth-title">Welcome Back</h1>
             <p class="auth-subtitle">Enter your credentials to access your account</p>
@@ -323,7 +362,10 @@
                     <label class="form-label">Password</label>
                     <div class="input-wrapper">
                         <i data-lucide="lock"></i>
-                        <input type="password" class="auth-input" placeholder="••••••••" required>
+                        <input type="password" class="auth-input" id="password-field" placeholder="••••••••" required>
+                        <button type="button" class="password-toggle" onclick="togglePasswordVisibility('password-field', this)">
+                            <i data-lucide="eye" style="width: 18px; height: 18px;"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -361,6 +403,28 @@
     <script src="../assets/js/main.js"></script>
     <script>
         lucide.createIcons();
+
+        function togglePasswordVisibility(fieldId, btn) {
+            const field = document.getElementById(fieldId);
+            const icon = btn.querySelector('i');
+            
+            if (field.type === 'password') {
+                field.type = 'text';
+                icon.setAttribute('data-lucide', 'eye-off');
+            } else {
+                field.type = 'password';
+                icon.setAttribute('data-lucide', 'eye');
+            }
+            
+            // Re-render only the clicked icon
+            lucide.createIcons({
+                attrs: {
+                    class: 'lucide-icon'
+                },
+                nameAttr: 'data-lucide',
+                icons: undefined
+            });
+        }
     </script>
 </body>
 </html>
