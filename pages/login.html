@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Golfic Premium</title>
+    
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-alt);
+        }
+
+        /* [LOCKED] AUTH RESPONSIVENESS (320px - 1024px) */
+
+        .auth-portal {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-alt);
+            position: relative;
+            padding: 40px 20px;
+        }
+
+        /* FIXED NAVIGATION */
+        .auth-nav {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            right: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .auth-nav * { pointer-events: auto; }
+
+        .back-home {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 16px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+        }
+
+        .back-home:hover { 
+            background: var(--secondary);
+            color: #000;
+            transform: translateX(-4px);
+        }
+
+        .theme-toggle-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        /* CARD ARCHITECTURE */
+        .auth-card {
+            width: 100%;
+            max-width: 480px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 10;
+        }
+
+        .auth-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            color: var(--text);
+        }
+
+        .auth-logo i { color: var(--secondary); width: 28px; height: 28px; }
+        .auth-logo span { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; letter-spacing: 2px; }
+
+        .auth-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            color: var(--text);
+            line-height: 1;
+        }
+
+        .auth-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        /* FORM FIELD PRECISION */
+        .form-group {
+            text-align: left;
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .input-wrapper i,
+        .input-wrapper svg {
+            position: absolute;
+            left: 18px;
+            width: 18px;
+            height: 18px;
+            color: var(--secondary);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .auth-input {
+            width: 100%;
+            height: 56px;
+            padding: 0 20px 0 52px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+            box-sizing: border-box;
+        }
+
+        .auth-input:focus {
+            outline: none;
+            border-color: var(--secondary);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+        }
+
+        .auth-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            font-size: 0.85rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .btn-auth {
+            width: 100%;
+            height: 60px;
+            background: var(--secondary);
+            color: #111;
+            border-radius: 12px;
+            font-weight: 900;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 15px 30px rgba(212,175,55,0.2);
+            margin-bottom: 30px;
+        }
+
+        .btn-auth:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(212,175,55,0.3);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-muted);
+            font-family: var(--font-heading);
+            font-size: 0.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .social-btn {
+            height: 52px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .social-btn:hover {
+            border-color: var(--secondary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .auth-footer {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .auth-footer a {
+            color: var(--secondary);
+            font-weight: 800;
+            text-decoration: none;
+            margin-left: 4px;
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="loading">
+
+    <nav class="auth-nav">
+        <a href="index.html" class="back-home">
+            <i data-lucide="chevron-left" style="width: 18px;"></i>
+            HOME
+        </a>
+        <button id="theme-toggle" class="theme-toggle-btn theme-toggle">
+            <i data-lucide="moon"></i>
+        </button>
+    </nav>
+
+    <main class="auth-portal">
+        <div class="auth-card reveal">
+            <div class="auth-logo reveal">
+                <i data-lucide="target"></i>
+                <span>GOLFIC</span>
+            </div>
+
+            <h1 class="auth-title">Welcome Back</h1>
+            <p class="auth-subtitle">Enter your credentials to access your account</p>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="mail"></i>
+                        <input type="email" class="auth-input" placeholder="name@email.com" required>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label class="form-label">Password</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="lock"></i>
+                        <input type="password" class="auth-input" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <div class="auth-options">
+                    <label class="checkbox-group">
+                        <input type="checkbox" style="width: 16px; height: 16px; accent-color: var(--secondary);">
+                        Remember Me
+                    </label>
+                    <a href="#" style="color: var(--secondary); font-weight: 700; text-decoration: none;">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn-auth">Sign In</button>
+            </form>
+
+            <div class="divider">Or continue with</div>
+
+            <div class="social-grid">
+                <button class="social-btn">
+                    <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" style="width: 16px;">
+                    GOOGLE
+                </button>
+                <button class="social-btn">
+                    <svg viewBox="0 0 17 20" fill="currentColor" style="width: 16px; margin-bottom: 2px;">
+                        <path d="M15.035 10.155c.01 2.585 2.11 3.447 2.13 3.456-.02.05-.33 1.137-1.107 2.257-.674.97-1.373 1.938-2.47 1.957-1.077.02-1.424-.627-2.65-.627-1.228 0-1.614.607-2.63.646-1.078.04-1.884-1.057-2.563-2.027-1.39-2-2.45-5.636-1.025-8.106.707-1.227 1.986-2.006 3.364-2.026 1.05-.02 2.03.7 2.67.7.63 0 1.83-.876 3.08-.756.52.02 1.99.20 2.92.35-.24.19-.5.4-.73.65-.96.96-1.02 2.15-1.02 3.12zM12.036 3.324c.563-.67 0-1.26.17-1.65-.583-.02-1.26.23-1.68.7-.563.63-.357 1.28-.173 1.63.63.05 1.12-.132 1.683-.68z"></path>
+                    </svg>
+                    APPLE
+                </button>
+            </div>
+
+            <p class="auth-footer">Don't have an account? <a href="signup.html">Join now</a></p>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="../assets/js/main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

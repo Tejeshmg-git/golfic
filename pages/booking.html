@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golfic | Reserve the Apex</title>
+    
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide/dist/umd/lucide.js"></script>
+
+    <style>
+        /* [GLOBAL LOCK] RESPONSIVE ARCHITECTURE - V1.0 FINALIZED */
+        .booking-step-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: var(--s-8);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booking-step-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .time-slot {
+            padding: 12px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .time-slot:hover {
+            background: var(--secondary);
+            color: var(--primary);
+            border-color: var(--secondary);
+        }
+
+        .time-slot.active {
+            background: var(--secondary);
+            color: var(--primary);
+            font-weight: 900;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.6rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .status-ready { background: rgba(74, 222, 128, 0.1); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.2); }
+
+        /* [LOCKED] LAPTOP/DESKTOP TIER (1025PX - 1440PX) */
+        @media (max-width: 1440px) {
+            .booking-step-card { padding: var(--s-6); }
+            .hero-booking-grid { gap: var(--s-8) !important; }
+            .booking-hero-h1 { font-size: 32px !important; }
+            .hover-snapshot-stack { height: 300px !important; }
+        }
+
+        /* [LOCKED] TABLET TIER (481PX - 1024PX) */
+        @media (max-width: 1024px) {
+            .hero-booking-grid { grid-template-columns: 1.2fr 1fr !important; text-align: left; }
+            .hero-booking-left { text-align: left !important; }
+            .hero-booking-left .badge-container { justify-content: flex-start !important; }
+            .hover-snapshot-stack { display: flex !important; transform: scale(0.8); }
+            
+            .suites-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            .suites-grid .booking-step-card:nth-child(3) { 
+                grid-column: span 2 !important; 
+                justify-self: center !important; 
+                max-width: 480px !important; 
+                width: 100% !important; 
+            }
+            .scheduler-grid { grid-template-columns: 1fr !important; gap: var(--s-10) !important; }
+            .provisions-grid { grid-template-columns: repeat(2, 1fr) !important; gap: var(--s-6) !important; }
+            .provision-card { 
+                display: grid !important; 
+                grid-template-columns: 80px 1fr auto auto !important; 
+                gap: 15px !important; 
+                align-items: center !important; 
+                padding: 15px !important;
+                text-align: left !important;
+            }
+            .provision-card > div:nth-child(2) { text-align: left !important; }
+            .provision-card h4 { font-size: 0.9rem !important; margin-bottom: 4px !important; line-height: 1.2 !important; }
+            .provision-card p { font-size: 0.7rem !important; line-height: 1.4 !important; max-width: 100% !important; }
+            .provision-card .price-tag { margin-right: 10px !important; font-size: 0.9rem !important; }
+            
+            .support-grid { grid-template-columns: 1.2fr 1fr !important; text-align: left !important; }
+            .valet-grid { grid-template-columns: 1fr 1.2fr !important; text-align: left !important; }
+            .upsell-grid { grid-template-columns: 1.5fr 1fr !important; text-align: left !important; }
+            .upsell-right { text-align: right !important; }
+            .upsell-terminal ul { 
+                grid-template-columns: 1fr 1fr !important; 
+                gap: 20px !important; 
+                padding-left: 0 !important; 
+                margin-bottom: var(--s-8) !important;
+                display: grid !important;
+            }
+            .upsell-terminal ul li {
+                display: flex !important;
+                align-items: flex-start !important;
+                text-align: left !important;
+                gap: 12px !important;
+                color: rgba(255,255,255,0.6) !important;
+            }
+            .upsell-terminal ul li i { margin-top: 3px !important; flex-shrink: 0 !important; }
+            
+            .summary-grid { grid-template-columns: 1fr !important; gap: var(--s-12) !important; }
+        }
+
+        /* [LOCKED] MOBILE RESPONSIVENESS (480PX BASELINE) */
+        @media (max-width: 480px) {
+            .booking-hero-h1 { font-size: 24px !important; }
+            .time-slots-grid { grid-template-columns: repeat(3, 1fr) !important; }
+            
+            /* HARD RESET: Terminal Lockdown */
+            .upsell-terminal, .summary-outer { 
+                padding: 12px !important; 
+                border-radius: 12px !important; 
+                width: 100% !important; 
+                max-width: 100% !important;
+                margin: 0 !important;
+                box-sizing: border-box !important;
+                overflow: hidden !important;
+            }
+            .upsell-terminal h2, .summary-outer h3 { 
+                font-size: 1.2rem !important; 
+                word-wrap: break-word !important;
+                white-space: normal !important;
+                letter-spacing: 0px !important;
+                max-width: 100% !important;
+                text-align: left !important;
+            }
+            .upsell-terminal p, .summary-terminal p { 
+                font-size: 0.75rem !important; 
+                word-wrap: break-word !important;
+                white-space: normal !important;
+                text-align: left !important;
+            }
+            .upsell-terminal ul { 
+                grid-template-columns: 1fr !important; 
+                gap: 12px !important; 
+                font-size: 0.75rem !important; 
+                text-align: left !important;
+                padding-left: 0 !important;
+            }
+            .upsell-terminal ul li {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: flex-start !important;
+                text-align: left !important;
+                gap: 10px !important;
+            }
+            .upsell-terminal ul li i { margin: 0 !important; flex-shrink: 0 !important; }
+            
+            .vanguard-card { 
+                min-width: 0 !important; 
+                width: 100% !important; 
+                box-sizing: border-box !important; 
+                padding: 12px !important; 
+                margin: 0 0 15px 0 !important;
+                overflow-wrap: break-word !important;
+            }
+            .vanguard-card span, .vanguard-card p { font-size: 0.55rem !important; word-wrap: break-word !important; }
+            
+            .summary-terminal { 
+                padding: 15px 10px !important; 
+                width: 100% !important; 
+                max-width: 100% !important;
+                box-sizing: border-box !important; 
+                border-radius: 8px !important;
+            }
+            .summary-terminal h4 { font-size: 0.9rem !important; word-wrap: break-word !important; }
+            
+            .checkout-btn, .upsell-btn { width: 100% !important; box-sizing: border-box !important; padding: 14px !important; font-size: 0.75rem !important; letter-spacing: 1px !important; white-space: normal !important; height: auto !important; }
+            
+            .manifest-strip { 
+                padding: 10px !important; 
+                gap: 8px !important; 
+                margin-bottom: 6px !important; 
+                width: 100% !important; 
+                box-sizing: border-box !important;
+            }
+            .manifest-strip h4 { font-size: 0.7rem !important; word-break: break-word !important; }
+            .manifest-strip p { font-size: 0.5rem !important; }
+            
+            .summary-grid h3 { font-size: 0.95rem !important; letter-spacing: 1px !important; word-break: break-word !important; }
+            .manifest-total { font-size: 1.2rem !important; letter-spacing: -0.5px !important; }
+
+            .support-options div { padding: 12px !important; font-size: 0.75rem !important; }
+
+            /* Suite Profiles Mobile Optimization */
+            .suites-grid { grid-template-columns: 1fr !important; gap: var(--s-6) !important; }
+            .booking-step-card { padding: 18px !important; }
+            .btn-select { width: auto !important; min-width: 110px !important; margin: 0 auto !important; display: block !important; padding: 8px 16px !important; font-size: 0.65rem !important; height: auto !important; }
+
+            /* Suite Provisions Mobile Optimization */
+            .provision-card { 
+                flex-direction: row !important; 
+                align-items: center !important; 
+                padding: 12px !important; 
+                gap: 12px !important; 
+                width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            .provision-card > div:first-child { 
+                width: 50px !important; 
+                height: 50px !important; 
+                border-radius: 8px !important; 
+            }
+            .provision-card h4 { font-size: 0.8rem !important; margin-bottom: 2px !important; }
+            .provision-card p { font-size: 0.6rem !important; line-height: 1.2 !important; }
+            .provision-card .price-tag { 
+                font-size: 0.8rem !important; 
+                margin: 0 4px 0 auto !important; 
+                min-width: 45px !important; 
+                text-align: right !important;
+            }
+            .provision-card i { width: 18px !important; }
+
+            /* Global Container Fix */
+            .container { padding-left: 10px !important; padding-right: 10px !important; }
+
+            .provisions-grid, .support-grid, .valet-grid, .upsell-grid { grid-template-columns: 1fr !important; text-align: left !important; }
+            .upsell-terminal h2, .summary-outer h3 { text-align: center !important; }
+            .upsell-terminal p { text-align: center !important; }
+            .upsell-terminal ul { padding-left: 0 !important; }
+            .upsell-terminal .vanguard-card { margin: 0 auto 20px !important; }
+            .upsell-terminal .upsell-btn { margin: 0 auto !important; }
+            .upsell-right { text-align: center !important; }
+        }
+    </style>
+</head>
+<body class="loading">
+
+    <!-- Global Header Hook -->
+    <div id="header-global"></div>
+
+    <main>
+        <!-- SECTION 1: HERO -->
+        <section class="section" style="min-height: 35vh; display: flex; align-items: center; padding-top: 120px; position: relative; overflow: hidden; background: #0B1215;">
+            
+            <!-- Luminous Energy Orbs -->
+            <div style="position: absolute; top: -10%; left: -5%; width: 400px; height: 400px; background: radial-gradient(circle, #12523E 0%, transparent 70%); filter: blur(80px); opacity: 0.15;"></div>
+            <div style="position: absolute; bottom: 0; right: 0; width: 500px; height: 500px; background: radial-gradient(circle, var(--secondary) 0%, transparent 70%); filter: blur(120px); opacity: 0.05;"></div>
+
+            <div class="container" style="position: relative; z-index: 5;">
+                <div class="grid grid-2 hero-booking-grid" style="gap: var(--s-12); align-items: center; max-width: 1200px; margin: 0 auto;">
+                    
+                    <!-- Left: Tactical Briefing -->
+                    <div class="hero-booking-left" style="text-align: left;">
+                        <!-- Trendy Tech Labels -->
+                        <div class="badge-container" style="display: flex; gap: 8px; margin-bottom: var(--s-6);">
+                            <div class="badge badge-glass">ACCURACY: 99.9%</div>
+                            <div class="badge badge-outline">STATUS: VANGUARD</div>
+                        </div>
+ 
+                        <h1 class="booking-hero-h1" style="color: white; font-size: 40px; line-height: 1.1; margin-bottom: var(--s-6); font-weight: 900; letter-spacing: -1.5px; text-transform: uppercase;">
+                            Reserve The <span style="color: var(--secondary);">Apex</span>
+                        </h1>
+                        <p style="color: rgba(255,255,255,0.6); font-size: 1rem; max-width: 440px; margin-bottom: var(--s-8); line-height: 1.6; font-weight: 300;">
+                            Configure your industrial-spec sanctuary and secure your slot in the world's most sophisticated diagnostic hub.
+                        </p>
+                        <a href="#suites" class="btn btn-gold no-toast" style="padding: 16px 32px; border-radius: 4px; font-weight: 900; letter-spacing: 2px; font-size: 0.8rem;">CONFIGURE YOUR SESSION</a>
+                    </div>
+ 
+                    <!-- Right: Interactive Organic Snapshot Stack -->
+                    <div class="hover-snapshot-stack" style="position: relative; height: 350px; width: 100%; display: flex; align-items: center; justify-content: center; perspective: 1200px;">
+                        
+                        <!-- Floating Accents -->
+                        <i data-lucide="sparkles" style="position: absolute; top: 10%; right: 15%; width: 15px; color: var(--secondary); opacity: 0.3;"></i>
+                        <i data-lucide="plus" style="position: absolute; bottom: 15%; left: 5%; width: 10px; color: var(--secondary); opacity: 0.2;"></i>
+
+                        <!-- Card 1: Top-Rightish (Home V1 Accuracy) -->
+                        <div class="hover-snapshot" style="position: absolute; top: 0; right: 20px; width: 220px; height: 140px; background: url('../assets/images/home-v1/Accuracy.jpg') center/cover; border: 1px solid rgba(255,255,255,0.1); border-radius: 32px; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; transform: rotate(5deg); z-index: 1; box-shadow: 0 30px 60px rgba(0,0,0,0.4);"></div>
+                        
+                        <!-- Card 2: Center-Leftish (Service Technology) -->
+                        <div class="hover-snapshot" style="position: absolute; top: 80px; left: 0; width: 260px; height: 180px; background: url('../assets/images/service/The Technology Core.jpg') center/cover; border: 1px solid var(--secondary); border-radius: 32px; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; transform: rotate(-5deg); z-index: 3; box-shadow: 0 40px 80px rgba(0,0,0,0.6);"></div>
+                        
+                        <!-- Card 3: Bottom-Rightish (About System) -->
+                        <div class="hover-snapshot" style="position: absolute; bottom: 0; right: 40px; width: 200px; height: 130px; background: url('../assets/images/about/System Standard.jpg') center/cover; border: 1px solid rgba(255,255,255,0.1); border-radius: 32px; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; transform: rotate(8deg); z-index: 2; box-shadow: 0 20px 40px rgba(0,0,0,0.3);"></div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                .hover-snapshot:hover {
+                    z-index: 100 !important;
+                    width: 340px !important;
+                    height: 220px !important;
+                    transform: scale(1.1) rotate(0) !important;
+                    box-shadow: 0 80px 160px rgba(0,0,0,0.8) !important;
+                    border-color: var(--secondary) !important;
+                }
+            </style>
+
+            <!-- Geometric Grid Overlay -->
+            <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none;"></div>
+        </section>
+
+        <!-- SECTION 2: SUITE SELECTION -->
+        <section id="suites" class="section" style="padding-top: 0;">
+            <div class="container">
+                 <div style="margin-top: var(--s-10); margin-bottom: var(--s-10);">
+                    <h2 style="font-size: 40px; text-align: center;">1. Select <span style="color: var(--secondary);">Suite Profile</span></h2>
+                 </div>
+                <div class="grid suites-grid" style="grid-template-columns: repeat(3, 1fr); gap: var(--s-6);">
+                    <div class="booking-step-card">
+                        <div style="height: 200px; background: url('../assets/images/booking/Signature Bay.jpg') center/cover; border-radius: 12px; margin-bottom: var(--s-6);"></div>
+                        <h4 style="margin-bottom: 8px;">Signature Bay</h4>
+                        <p class="text-sm text-muted" style="margin-bottom: var(--s-4);">The standard for professional practice. A concentrated high-fidelity environment.</p>
+                        <ul style="list-style: none; padding: 0; margin-bottom: var(--s-6); font-size: 0.85rem; color: var(--text-muted);">
+                            <li style="margin-bottom: 8px;">• Trackman 4.0 Dual-Radar Array</li>
+                            <li style="margin-bottom: 8px;">• 4K HDR Projector (6,000 Lumens)</li>
+                            <li style="margin-bottom: 8px;">• Italian Leather Seating</li>
+                        </ul>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-family: monospace; font-weight: 900; color: var(--secondary);">$120/HR</span>
+                            <button class="btn btn-gold btn-select" style="padding: 10px 20px; font-size: 0.7rem;">SELECT</button>
+                        </div>
+                    </div>
+                    <div class="booking-step-card" style="border-color: var(--secondary);">
+                        <div style="height: 200px; background: url('../assets/images/booking/Pro Performance Suite.jpg') center/cover; border-radius: 12px; margin-bottom: var(--s-6);"></div>
+                        <span class="badge" style="position: absolute; top: 20px; right: 20px;">MOST POPULAR</span>
+                        <h4 style="margin-bottom: 8px;">Pro Performance Suite</h4>
+                        <p class="text-sm text-muted" style="margin-bottom: var(--s-4);">The ultimate diagnostic hub for serious competitive refinement.</p>
+                        <ul style="list-style: none; padding: 0; margin-bottom: var(--s-6); font-size: 0.85rem; color: var(--text-muted);">
+                            <li style="margin-bottom: 8px;">• 10,000 FPS High-Speed Video Integration</li>
+                            <li style="margin-bottom: 8px;">• NVIDIA RTX Real-Time Course Rendering</li>
+                            <li style="margin-bottom: 8px;">• Biometric Pressure Mapping Plates</li>
+                        </ul>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-family: monospace; font-weight: 900; color: var(--secondary);">$180/HR</span>
+                            <button class="btn btn-gold btn-select" style="padding: 10px 20px; font-size: 0.7rem;">SELECTED</button>
+                        </div>
+                    </div>
+                    <div class="booking-step-card">
+                        <div style="height: 200px; background: url('../assets/images/booking/Executive Lounge.jpg') center/cover; border-radius: 12px; margin-bottom: var(--s-6);"></div>
+                        <h4 style="margin-bottom: 8px;">Executive Lounge</h4>
+                        <p class="text-sm text-muted" style="margin-bottom: var(--s-4);">Engineered for social reciprocity and high-stakes hospitality.</p>
+                        <ul style="list-style: none; padding: 0; margin-bottom: var(--s-6); font-size: 0.85rem; color: var(--text-muted);">
+                            <li style="margin-bottom: 8px;">• 5.1 Surround Sound Atmospheric Audio</li>
+                            <li style="margin-bottom: 8px;">• Dedidicated In-Suite Drinks Valet</li>
+                            <li style="margin-bottom: 8px;">• 120" Social Broadcast Screen</li>
+                        </ul>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-family: monospace; font-weight: 900; color: var(--secondary);">$250/HR</span>
+                            <button class="btn btn-gold btn-select" style="padding: 10px 20px; font-size: 0.7rem;">SELECT</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: LIVE SCHEDULER -->
+        <section class="section" style="background: var(--bg-alt);">
+            <div class="container">
+                <div class="grid scheduler-grid" style="grid-template-columns: 1fr 1.5fr; gap: var(--s-12); align-items: start;">
+                    <div>
+                        <h2 style="font-size: var(--fs-h2); margin-bottom: var(--s-6);">2. Set <span style="color: var(--secondary);">Temporal Slot</span></h2>
+                        <p class="text-muted" style="margin-bottom: var(--s-4);">Real-time availability for Pro Performance Suite 04.</p>
+                        <p class="text-xs text-muted" style="line-height: 1.6; margin-bottom: var(--s-8);">Peak performance hours (7AM-4PM) are prioritized for technical diagnostics. Social hours (6PM-Midnight) include complimentary drink pairings from our Rare Spirits Library.</p>
+                        <div style="background: var(--bg-card); padding: 20px; border-radius: 16px; border: 1px solid var(--border);">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 12px;">
+                                <span style="font-weight: 700; color: white;">APRIL 21, 2026</span>
+                                <span class="status-badge status-ready">LIVE_SYNC</span>
+                            </div>
+                             <div class="grid time-slots-grid" style="grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                                <div class="time-slot">06:00</div>
+                                <div class="time-slot" style="opacity: 0.3; cursor: not-allowed;">07:00</div>
+                                <div class="time-slot">08:00</div>
+                                <div class="time-slot" style="opacity: 0.3; cursor: not-allowed;">09:00</div>
+                                <div class="time-slot active">10:00</div>
+                                <div class="time-slot">11:00</div>
+                                <div class="time-slot">12:00</div>
+                                <div class="time-slot">13:00</div>
+                                <div class="time-slot">14:00</div>
+                                <div class="time-slot">15:00</div>
+                                <div class="time-slot">16:00</div>
+                                <div class="time-slot">17:00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="height: 100%; min-height: 400px; background: url('../assets/images/booking/Temporal Slot.jpg') center/cover; border-radius: 24px; border: 1px solid var(--border); overflow: hidden; display: flex; align-items: flex-end; padding: 40px;">
+                         <div style="background: rgba(0,0,0,0.8); backdrop-filter: blur(20px); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); width: 100%;">
+                             <p style="color: var(--secondary); font-size: 0.6rem; letter-spacing: 2px; font-weight: 800; margin-bottom: 8px;">AVAILABLE INSTRUCTOR</p>
+                             <h4 style="color: white; margin-bottom: 4px;">Alex Rivera</h4>
+                             <p class="text-muted text-sm">Tech Director | PGA Class A</p>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: GASTRONOMY ADD-ONS -->
+        <section class="section">
+            <div class="container">
+                <div style="margin-bottom: var(--s-10);">
+                    <h2 style="font-size: var(--fs-h2); text-align: center;">3. Suite <span style="color: var(--secondary);">Provisions</span></h2>
+                     <div class="grid grid-3 provisions-grid" style="gap: var(--s-8);">
+                    <div class="provision-card" style="display: flex; gap: 20px; align-items: center; background: var(--bg-card); padding: 20px; border-radius: 16px; border: 1px solid var(--border);">
+                         <div style="width: 80px; height: 80px; background: url('../assets/images/booking/Whiskey Vault Sample.jpg') center/cover; border-radius: 12px; flex-shrink: 0;"></div>
+                         <div style="flex: 1;">
+                             <h4 style="font-size: 1rem;">Whiskey Vault Sample</h4>
+                             <p class="text-xs text-muted">Three regional malts curated by our master mixologist.</p>
+                         </div>
+                         <div class="price-tag" style="font-weight: 900; color: var(--secondary); margin-right: 15px;">+$45</div>
+                         <i data-lucide="plus-circle" style="width: 24px; color: var(--secondary); cursor: pointer;"></i>
+                    </div>
+                    <div class="provision-card" style="display: flex; gap: 20px; align-items: center; background: var(--bg-card); padding: 20px; border-radius: 16px; border: 1px solid var(--border);">
+                         <div style="width: 80px; height: 80px; background: url('../assets/images/booking/Artisan Service Board.jpg') center/cover; border-radius: 12px; flex-shrink: 0;"></div>
+                         <div style="flex: 1;">
+                             <h4 style="font-size: 1rem;">Artisan Service Board</h4>
+                             <p class="text-xs text-muted">Imported meats and premium snacks for up to 4 guests.</p>
+                         </div>
+                         <div class="price-tag" style="font-weight: 900; color: var(--secondary); margin-right: 15px;">+$55</div>
+                         <i data-lucide="plus-circle" style="width: 24px; color: var(--secondary); cursor: pointer;"></i>
+                    </div>
+                    <div class="provision-card" style="display: flex; gap: 20px; align-items: center; background: var(--bg-card); padding: 20px; border-radius: 16px; border: 1px solid var(--border);">
+                         <div style="width: 80px; height: 80px; background: url('../assets/images/booking/Social Mixology Tray.jpg') center/cover; border-radius: 12px; flex-shrink: 0;"></div>
+                         <div style="flex: 1;">
+                             <h4 style="font-size: 1rem;">Social Mixology Tray</h4>
+                             <p class="text-xs text-muted">Signature cocktails tailored to your operational profile.</p>
+                         </div>
+                         <div class="price-tag" style="font-weight: 900; color: var(--secondary); margin-right: 15px;">+$65</div>
+                         <i data-lucide="plus-circle" style="width: 24px; color: var(--secondary); cursor: pointer;"></i>
+                    </div>
+                    <div class="provision-card" style="display: flex; gap: 20px; align-items: center; background: var(--bg-card); padding: 20px; border-radius: 16px; border: 1px solid var(--border);">
+                         <div style="width: 80px; height: 80px; background: url('../assets/images/booking/Reserve Vintage Selector.jpg') center/cover; border-radius: 12px; flex-shrink: 0;"></div>
+                         <div style="flex: 1;">
+                             <h4 style="font-size: 1rem;">Reserve Vintage Selector</h4>
+                             <p class="text-xs text-muted">Exclusive access to our vault of reserve 2012 vintages.</p>
+                         </div>
+                         <div class="price-tag" style="font-weight: 900; color: var(--secondary); margin-right: 15px;">+$110</div>
+                         <i data-lucide="plus-circle" style="width: 24px; color: var(--secondary); cursor: pointer;"></i>
+                    </div>
+                </div>
+           </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: PROFESSIONAL GUIDANCE -->
+        <section class="section" style="background: var(--primary); color: white;">
+            <div class="container">
+                 <div class="grid grid-2 support-grid" style="gap: var(--s-12); align-items: center;">
+                     <div>
+                        <h2 style="color: white; font-size: var(--fs-h2); margin-bottom: var(--s-6);">4. Operational <span style="color: var(--secondary);">Support</span></h2>
+                        <p style="color: rgba(255,255,255,0.7); margin-bottom: var(--s-4);">Select specialized coaching to amplify your operational output.</p>
+                        <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: var(--s-10); line-height: 1.8; font-weight: 300;">A Master Session includes: Biometric Pressure Analysis, Radical Swing Dynamics, and Predictive Trajectory Analytics powered by our NVIDIA Core.</p>
+                        <div class="support-options" style="display: flex; gap: var(--s-4);">
+                             <div style="padding: 24px; background: rgba(212,175,55,0.1); border: 1px solid var(--secondary); border-radius: 12px; flex: 1; text-align: center; cursor: pointer;">
+                                 <h4 style="color: var(--secondary); margin-bottom: 4px;">Add PGA Instructor</h4>
+                                 <span style="font-family: monospace; font-size: 0.8rem;">+$95 / Session</span>
+                             </div>
+                             <div style="padding: 24px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; flex: 1; text-align: center; cursor: pointer;">
+                                 <h4 style="color: white; margin-bottom: 4px;">Independent Play</h4>
+                                 <span style="font-family: monospace; font-size: 0.8rem;">No Charge</span>
+                             </div>
+                        </div>
+                     </div>
+                     <div class="support-img" style="height: 400px; background: url('../assets/images/booking/Operational Support.jpg') center/cover; border-radius: 120px 4px 120px 4px; border: 1px solid rgba(255,255,255,0.1);"></div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: EQUIPMENT LOGISTICS -->
+        <section class="section">
+            <div class="container">
+                <div class="grid grid-2 valet-grid" style="gap: var(--s-12); align-items: center;">
+                    <div style="height: 400px; background: url('../assets/images/booking/Logistics Valet.jpg') center/cover; border-radius: 32px; border: 1px solid var(--border);"></div>
+                    <div>
+                        <h2 style="font-size: var(--fs-h2); margin-bottom: var(--s-6);">5. Logistics <span style="color: var(--secondary);">Valet</span></h2>
+                        <p class="text-muted" style="margin-bottom: var(--s-8);">Step directly from your vehicle to the suite. Your equipment is stashed, cleaned, and professionally calibrated before you strike your first ball.</p>
+                        <div style="display: grid; gap: var(--s-4); margin-bottom: var(--s-8);">
+                             <label style="display: flex; items: center; gap: 16px; background: var(--bg-alt); padding: 16px; border-radius: 12px; cursor: pointer; border: 1px solid var(--border);">
+                                <input type="checkbox" checked style="accent-color: var(--secondary); width: 18px; height: 18px;">
+                                <span style="font-size: 0.85rem; font-weight: 700;">Club Calibration & Tuning</span>
+                            </label>
+                            <label style="display: flex; items: center; gap: 16px; background: var(--bg-alt); padding: 16px; border-radius: 12px; cursor: pointer; border: 1px solid var(--border);">
+                                <input type="checkbox" checked style="accent-color: var(--secondary); width: 18px; height: 18px;">
+                                <span style="font-size: 0.85rem; font-weight: 700;">Diagnostic Bag Cleaning Service</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: MEMBERSHIP UPSELL -->
+        <section class="section" style="padding-bottom: 50px;">
+            <div class="container">
+                <div class="upsell-terminal" style="background: linear-gradient(135deg, #0B1215 0%, #1e293b 100%); border: 1px solid var(--secondary); border-radius: 40px; padding: var(--s-12); position: relative; overflow: hidden;">
+                     <div style="position: absolute; top: -50px; right: -50px; width: 300px; height: 300px; background: radial-gradient(circle, var(--secondary) 0%, transparent 70%); opacity: 0.05; filter: blur(50px);"></div>
+                     <div class="grid upsell-grid" style="grid-template-columns: 1.5fr 1fr; gap: var(--s-10); align-items: center;">
+                         <div>
+                            <h2 style="color: white; font-size: var(--fs-h2); margin-bottom: var(--s-4);">Experience the <span style="color: var(--secondary);">Sanctuary</span></h2>
+                            <p style="color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: var(--s-6);">Founding members enjoy the absolute zenith of the game. Join the vanguard for uncompromising access.</p>
+                            <ul style="list-style: none; padding: 0; color: rgba(255,255,255,0.4); font-size: 0.8rem; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                                <li><i data-lucide="check" style="width: 14px; color: var(--secondary); margin-right: 8px;"></i> 24/7 Priority Access</li>
+                                <li><i data-lucide="check" style="width: 14px; color: var(--secondary); margin-right: 8px;"></i> Zero Guest Fees</li>
+                                <li><i data-lucide="check" style="width: 14px; color: var(--secondary); margin-right: 8px;"></i> Climate Vault storage</li>
+                                <li><i data-lucide="check" style="width: 14px; color: var(--secondary); margin-right: 8px;"></i> VIP Gastronomy Rates</li>
+                            </ul>
+                         </div>
+                         <div style="text-align: right;">
+                             <div class="vanguard-card" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; display: inline-block; text-align: left; margin-bottom: var(--s-6); min-width: 300px;">
+                                 <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+                                     <span class="badge badge-outline">VANGUARD_STATUS</span>
+                                     <span style="color: #4ade80; font-size: 0.6rem; font-family: monospace; font-weight: 800;">ACTIVE_QUEUE</span>
+                                 </div>
+                                 <p style="color: white; font-size: 1.15rem; font-weight: 800; margin-bottom: 8px;">ELIGIBILITY: OPEN</p>
+                                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                                     <div style="width: 8px; height: 8px; background: #e11d48; border-radius: 50%; box-shadow: 0 0 10px #e11d48;"></div>
+                                     <span style="font-size: 0.7rem; color: rgba(255,255,255,0.6); font-weight: 700;">ONLY 04 FOUNDING SLOTS REMAINING</span>
+                                 </div>
+                                 <p style="color: rgba(255,255,255,0.3); font-size: 0.6rem; line-height: 1.5; font-family: monospace;">TIER: APEX_V1 // LOCATION: GLOBAL_SANCTUARY_NETWORK</p>
+                             </div>
+                             <br>
+                             <a href="signup.html" class="btn btn-gold upsell-btn" style="padding: 12px 30px; border-radius: 4px; font-weight: 900; letter-spacing: 2px; font-size: 0.8rem;">JOIN THE VANGUARD</a>
+                         </div>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 8: TACTICAL SUMMARY TERMINAL -->
+        <section class="section" style="padding-bottom: 200px;">
+            <div class="container">
+                <div class="summary-outer" style="background: #0B1215; border: 1px solid rgba(212,175,55,0.2); border-radius: 48px; padding: var(--s-12); box-shadow: 0 60px 120px rgba(0,0,0,0.6); position: relative; overflow: hidden;">
+                    
+                    <!-- Luminous Accents -->
+                    <div style="position: absolute; bottom: -20%; left: -10%; width: 400px; height: 400px; background: radial-gradient(circle, #12523E 0%, transparent 70%); filter: blur(100px); opacity: 0.3;"></div>
+                    <div style="position: absolute; top: -10%; right: -5%; width: 300px; height: 300px; background: radial-gradient(circle, var(--secondary) 0%, transparent 70%); filter: blur(120px); opacity: 0.1;"></div>
+                    
+                    <div class="grid summary-grid" style="grid-template-columns: 1fr 1.3fr; gap: var(--s-16); align-items: center; position: relative; z-index: 2;">
+                        
+                        <!-- Left Column: Encrypted Checkout Terminal -->
+                        <div class="summary-terminal" style="background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); padding: 50px; border-radius: 32px; border: 1px solid rgba(212,175,55,0.3); box-shadow: 0 0 50px rgba(212,175,55,0.05); box-sizing: border-box;">
+                            
+                            <div style="margin-bottom: var(--s-6);">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                                    <span style="font-size: 0.55rem; letter-spacing: 3px; font-weight: 900; color: var(--secondary);">SECURITY_STATUS</span>
+                                    <div style="display: flex; gap: 4px;">
+                                        <div style="width: 4px; height: 4px; background: #4ade80; border-radius: 1px;"></div>
+                                        <div style="width: 4px; height: 4px; background: #4ade80; border-radius: 1px;"></div>
+                                        <div style="width: 4px; height: 4px; background: #4ade80; border-radius: 1px;"></div>
+                                    </div>
+                                </div>
+                                <h4 style="color: white; font-size: 1.25rem; margin-bottom: 12px; letter-spacing: -0.5px;">Merchant Encryption Active</h4>
+                                <p style="color: rgba(255,255,255,0.85); font-size: 0.9rem; line-height: 1.7; margin-bottom: 0;">Your tactical session parameters are hashed and secured via localized 256-bit AES protocols. PCI-DSS Level 1 compliant gateway engaged.</p>
+                            </div>
+
+                            <div style="margin-bottom: var(--s-8); border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--s-4);">
+                                <p style="color: var(--secondary); font-size: 0.65rem; font-weight: 900; letter-spacing: 2px; margin-bottom: 8px;">THE GOLFIC GUARANTEE</p>
+                                <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 1.7;">Integrated social hour reimbursement active if hardware calibration falls below primary vanguard standards.</p>
+                            </div>
+ 
+                            <button class="btn btn-gold checkout-btn" style="width: 100%; padding: 26px; border-radius: 4px; font-weight: 900; letter-spacing: 4px; font-size: 1rem; box-shadow: 0 15px 40px rgba(212,175,55,0.2);">INITIALIZE RESERVATION</button>
+                            
+                            <div style="margin-top: 24px; text-align: center;">
+                                <div style="width: 100%; height: 2px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; margin-bottom: 10px;">
+                                    <div style="width: 85%; height: 100%; background: var(--secondary);"></div>
+                                </div>
+                                <p style="font-size: 0.5rem; color: rgba(255,255,255,0.3); font-family: monospace;">BUFFERING: FINAL_SYNC_PROTOCOL_88%</p>
+                            </div>
+                        </div>
+
+                        <div style="text-align: left;">
+                            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: var(--s-8);">
+                                <div style="width: 12px; height: 12px; background: var(--secondary); border-radius: 2px; transform: rotate(45deg);"></div>
+                                <h3 style="letter-spacing: 4px; font-weight: 900; color: white; margin: 0;">RESERVATION_MANIFEST_V4</h3>
+                            </div>
+
+                            <div style="display: grid; gap: 12px; margin-bottom: var(--s-10);">
+                                <!-- Data Strip 1 -->
+                                <div class="manifest-strip" style="display: flex; align-items: center; gap: 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 20px 24px; border-radius: 12px; text-align: left;">
+                                    <i data-lucide="monitor" style="width: 20px; color: var(--secondary);"></i>
+                                    <div style="flex: 1;">
+                                        <p style="font-size: 0.6rem; color: var(--secondary); letter-spacing: 2px; font-weight: 800; margin-bottom: 4px;">UNIT_PROFILE</p>
+                                        <h4 style="font-weight: 700; color: white; font-size: 1.1rem; margin: 0;">PRO PERFORMANCE SUITE_04</h4>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <span style="font-family: monospace; font-size: 0.7rem; color: rgba(255,255,255,0.4);">RADAR: ACTIVE</span>
+                                    </div>
+                                </div>
+ 
+                                <!-- Data Strip 2 -->
+                                <div class="manifest-strip" style="display: flex; align-items: center; gap: 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 20px 24px; border-radius: 12px; text-align: left;">
+                                    <i data-lucide="clock" style="width: 20px; color: var(--secondary);"></i>
+                                    <div style="flex: 1;">
+                                        <p style="font-size: 0.6rem; color: var(--secondary); letter-spacing: 2px; font-weight: 800; margin-bottom: 4px;">TEMPORAL_WINDOW</p>
+                                        <h4 style="font-weight: 700; color: white; font-size: 1.1rem; margin: 0;">10:00 - 11:00 AM (APRIL 21)</h4>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <span style="font-family: monospace; font-size: 0.7rem; color: #4ade80;">STATUS: READY</span>
+                                    </div>
+                                </div>
+ 
+                                <!-- Data Strip 3 -->
+                                <div class="manifest-strip" style="display: flex; align-items: center; gap: 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 20px 24px; border-radius: 12px; text-align: left;">
+                                    <i data-lucide="user-check" style="width: 20px; color: var(--secondary);"></i>
+                                    <div style="flex: 1;">
+                                        <p style="font-size: 0.6rem; color: var(--secondary); letter-spacing: 2px; font-weight: 800; margin-bottom: 4px;">OPERATIONAL_SUPPORT</p>
+                                        <h4 style="font-weight: 700; color: white; font-size: 1.1rem; margin: 0;">PGA MASTER INSTRUCTOR COACHING</h4>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <span style="font-family: monospace; font-size: 0.7rem; color: white;">CALIBRATED</span>
+                                    </div>
+                                </div>
+                            </div>
+ 
+                            <div style="display: flex; justify-content: space-between; align-items: flex-end; padding: 0 10px;">
+                                <div style="text-align: left;">
+                                    <p style="font-size: 0.6rem; color: rgba(255,255,255,0.4); letter-spacing: 1px; margin-bottom: 4px;">ESTIMATED DIAGNOSTIC ACCURACY</p>
+                                    <p style="font-family: monospace; color: var(--secondary); font-weight: 900; font-size: 1.25rem;">99.98% <span style="font-size: 0.7rem; font-weight: 400; color: rgba(255,255,255,0.3);">DELTA_SYNC</span></p>
+                                </div>
+                                <div style="text-align: right;">
+                                    <p style="font-size: 0.6rem; color: rgba(255,255,255,0.4); letter-spacing: 1px; margin-bottom: 4px;">TOTAL_FEES_PAYABLE</p>
+                                    <p class="manifest-total" style="font-size: 2.25rem; font-weight: 900; color: white; font-family: monospace; letter-spacing: -2px;">$275.00</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Global Footer Hook -->
+    <div id="footer-global"></div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

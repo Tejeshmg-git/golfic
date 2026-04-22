@@ -1,0 +1,37 @@
+/* --- Dark Mode Overrides --- */
+
+body.dark-layout {
+    --bg-main: #0B1120;
+    --bg-alt: #162033;
+    --bg-card: #162033;
+    
+    --text-main: #FFFFFF;
+    --text-muted: rgba(255, 255, 255, 0.85);
+    --text-dim: rgba(255, 255, 255, 0.6);
+    
+    --border: rgba(255, 255, 255, 0.1);
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+}
+
+/* Theme specific component overrides */
+body.dark-layout .btn-secondary {
+    color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+body.dark-layout .btn-secondary:hover {
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+body.dark-layout h1, 
+body.dark-layout h2, 
+body.dark-layout h3, 
+body.dark-layout h4 {
+    color: #FFFFFF;
+}
+
+body.dark-layout .step-number {
+    color: var(--secondary);
+    background: var(--bg-alt);
+}

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golfic | Contact the Concierge</title>
+    
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide/dist/umd/lucide.js"></script>
+
+    <style>
+        .contact-form-input {
+            width: 100%;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            padding: 16px 20px;
+            border-radius: 4px;
+            color: white;
+            font-size: 1rem;
+            margin-bottom: var(--s-6);
+            transition: all 0.3s;
+        }
+
+        .contact-form-input:focus {
+            border-color: var(--secondary);
+            background: rgba(255,255,255,0.05);
+            outline: none;
+        }
+
+        .map-node {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--secondary);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--secondary);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .map-node:hover {
+            transform: scale(1.5);
+            box-shadow: 0 0 40px var(--secondary);
+        }
+
+        .map-node::after {
+            content: attr(data-city);
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(10px);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            white-space: nowrap;
+            color: var(--secondary);
+            border: 1px solid rgba(212,175,55,0.2);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .map-node:hover::after {
+            opacity: 1;
+            top: 25px;
+        }
+
+        .contact-hero-h1 {
+            color: white !important;
+        }
+
+        .contact-hero-p {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        /* [LOCKED] CONTACT RESPONSIVENESS */
+        @media (max-width: 1024px) {
+            .contact-hero-h1 { font-size: 3.5rem !important; }
+            .inquiry-grid { gap: var(--s-10) !important; }
+            .map-container { width: 1000px !important; }
+            .cadence-grid { grid-template-columns: 1fr !important; gap: var(--s-10) !important; text-align: left !important; }
+            .cadence-terminal { padding: 30px !important; }
+        }
+
+        @media (max-width: 768px) {
+            .contact-hero-h1 { font-size: 2.8rem !important; }
+            .inquiry-grid { grid-template-columns: 1fr !important; }
+            .inquiry-left { padding: 30px !important; border-radius: 32px !important; }
+            .cadence-grid { grid-template-columns: 1fr !important; gap: var(--s-10) !important; }
+            .faq-accordion-grid { grid-template-columns: 1fr !important; }
+            .map-viewport { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .map-container { width: 1200px !important; border-radius: 30px !important; }
+        }
+
+        @media (max-width: 480px) {
+            .contact-hero-h1 { font-size: 2.2rem !important; }
+            .form-row { grid-template-columns: 1fr !important; gap: 0 !important; }
+            .inquiry-left { padding: 25px !important; }
+            .dispatch-btn { letter-spacing: 2px !important; font-size: 0.8rem !important; }
+            .network-map-h2 { font-size: 1.85rem !important; }
+        }
+    </style>
+</head>
+<body class="loading">
+
+    <!-- Global Header Hook -->
+    <div id="header-global"></div>
+
+    <main>
+        <section class="section reveal" style="min-height: 50vh; display: flex; align-items: center; padding-top: 160px; position: relative; overflow: hidden; background: linear-gradient(0deg, #0B1215 0%, rgba(11,18,21,0.6) 100%), url('../assets/images/about/herosection-img.jpg') center/cover no-repeat;">
+            <!-- Luminous Accents -->
+            <div style="position: absolute; top: -10%; left: -5%; width: 400px; height: 400px; background: radial-gradient(circle, #12523E 0%, transparent 70%); filter: blur(80px); opacity: 0.1;"></div>
+            <div style="position: absolute; bottom: 0; right: 0; width: 600px; height: 600px; background: radial-gradient(circle, var(--secondary) 0%, transparent 70%); filter: blur(120px); opacity: 0.05;"></div>
+
+            <div class="container text-center reveal" style="position: relative; z-index: 5;">
+                <div class="reveal" style="display: flex; justify-content: center; gap: 12px; margin-bottom: var(--s-8);">
+                    <div class="badge badge-glass">OPERATIONAL_STATUS: NOMINAL</div>
+                    <div class="badge badge-outline">LATENCY: &lt; 5M</div>
+                </div>
+                <h1 class="contact-hero-h1 reveal" style="font-size: var(--fs-h1); line-height: 1.1; margin-bottom: var(--s-6); font-weight: 900; letter-spacing: -2px; text-transform: uppercase;">
+                    The Gateway to the <span style="color: var(--secondary);">Sanctuary</span>
+                </h1>
+                <p class="contact-hero-p reveal" style="font-size: var(--fs-body-lg); max-width: 700px; margin: 0 auto; line-height: 1.8; font-weight: 300;">
+                    Our executive concierge is worldwide. Whether inquiring about founding membership or global facility integration, our team is ready to frame your future.
+                </p>
+            </div>
+        </section>
+        </section>
+
+        <!-- SECTION 2: INQUIRY INTERFACE -->
+        <section class="section reveal" style="padding-top: var(--s-10);">
+            <div class="container">
+                <div class="grid grid-2 inquiry-grid" style="gap: var(--s-16);">
+                    <!-- Form -->
+                    <div class="reveal-left inquiry-left" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 50px; border-radius: 48px; box-shadow: 0 40px 80px rgba(0,0,0,0.3);">
+                        <div class="reveal" style="display: flex; align-items: center; gap: 12px; margin-bottom: 30px;">
+                            <div style="width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80;"></div>
+                            <h3 style="margin: 0; font-size: 1.5rem; letter-spacing: -0.5px;">Initialize Dispatch</h3>
+                        </div>
+                        <form class="reveal">
+                            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                <input type="text" class="contact-form-input" placeholder="FULL NAME / IDENTITY">
+                                <input type="email" class="contact-form-input" placeholder="EMAIL_ENCRYPTED">
+                            </div>
+                            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                <input type="tel" class="contact-form-input" placeholder="TELEMETRY_PHONE">
+                                <select class="contact-form-input" style="appearance: none; background-image: linear-gradient(45deg, transparent 50%, rgba(255,255,255,0.2) 50%), linear-gradient(135deg, rgba(255,255,255,0.2) 50%, transparent 50%); background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px); background-size: 5px 5px, 5px 5px; background-repeat: no-repeat;">
+                                    <option>FOUNDING_MEMBERSHIP_V1</option>
+                                    <option>SUITE_CALIBRATION_SUPPORT</option>
+                                    <option>GLOBAL_NETWORK_EXPANSION</option>
+                                    <option>CORPORATE_VANGUARD_EVENTS</option>
+                                    <option>TECHNICAL_SPEC_INQUIRY</option>
+                                </select>
+                            </div>
+                            <textarea class="contact-form-input" style="min-height: 180px;" placeholder="ENTRY_MESSAGE: HOW MAY WE FRAME YOUR ACQUISITION?"></textarea>
+                            <button type="submit" class="btn btn-gold dispatch-btn" style="width: 100%; padding: 24px; border-radius: 4px; font-weight: 900; letter-spacing: 4px; font-size: 0.9rem;">DISPATCH TRANSMISSION</button>
+                        </form>
+                    </div>
+
+                    <!-- Directives -->
+                    <div class="reveal-right" style="padding-top: var(--s-4);">
+                        <h3 class="reveal" style="margin-bottom: var(--s-8);">Direct Channels</h3>
+                        
+                        <div class="grid reveal" style="display: grid; gap: var(--s-8);">
+                            <div class="hover-scale" style="display: flex; gap: 20px;">
+                                <div style="width: 50px; height: 50px; background: rgba(212,175,55,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <i data-lucide="phone" style="width: 24px; color: var(--secondary);"></i>
+                                </div>
+                                <div>
+                                    <h4 style="margin-bottom: 4px;">Executive Concierge</h4>
+                                    <p class="text-sm text-muted">+1 (888) 555-GOLF</p>
+                                    <div class="badge badge-outline" style="font-size: 0.65rem; padding: 4px 10px; margin-top: 4px;">AVAILABLE 24/7 FOR MEMBERS</div>
+                                </div>
+                            </div>
+
+                            <div class="hover-scale" style="display: flex; gap: 20px;">
+                                <div style="width: 50px; height: 50px; background: rgba(212,175,55,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <i data-lucide="mail" style="width: 24px; color: var(--secondary);"></i>
+                                </div>
+                                <div>
+                                    <h4 style="margin-bottom: 4px;">Digital Directives</h4>
+                                    <p class="text-sm text-muted">concierge@golfic.com</p>
+                                    <div class="badge badge-outline" style="font-size: 0.65rem; padding: 4px 10px; margin-top: 4px;">TYPICAL RESPONSE: &lt; 2 HOURS</div>
+                                </div>
+                            </div>
+
+                            <div class="hover-scale" style="display: flex; gap: 20px;">
+                                <div style="width: 50px; height: 50px; background: rgba(212,175,55,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <i data-lucide="map-pin" style="width: 24px; color: var(--secondary);"></i>
+                                </div>
+                                <div>
+                                    <h4 style="margin-bottom: 4px;">Primary Unit</h4>
+                                    <p class="text-sm text-muted">1188 West Georgia St, Vancouver, BC</p>
+                                    <div class="badge badge-outline" style="font-size: 0.65rem; padding: 4px 10px; margin-top: 4px;">CENTRAL HUB PLATINUM</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Snippet -->
+                        <div style="margin-top: var(--s-10); padding: 30px; background: var(--bg-alt); border-radius: 20px; border: 1px solid var(--border);">
+                             <h4 style="margin-bottom: 12px;">Live Transmissions</h4>
+                             <div style="display: flex; gap: 16px;">
+                                 <i data-lucide="instagram" style="width: 20px; color: rgba(255,255,255,0.3); cursor: pointer;"></i>
+                                 <i data-lucide="twitter" style="width: 20px; color: rgba(255,255,255,0.3); cursor: pointer;"></i>
+                                 <i data-lucide="linkedin" style="width: 20px; color: rgba(255,255,255,0.3); cursor: pointer;"></i>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: THE GLOBAL NETWORK (INTERACTIVE MAP) -->
+        <section class="section" style="background: #0B1215; padding: 120px 0; overflow: hidden; position: relative;">
+            <div class="container text-center">
+                 <div style="margin-bottom: var(--s-12);">
+                    <h2 class="network-map-h2" style="color: #FFFFFF; font-size: var(--fs-h2); font-weight: 900; letter-spacing: -1.5px; margin-bottom: 8px;">The Global <span style="color: var(--secondary);">Network</span></h2>
+                    <p style="color: rgba(255,255,255,0.4); font-family: monospace; font-size: var(--fs-body-xs); letter-spacing: 2px;">ACTIVE_NODES: 06 // SYNCING: GLOBAL_DIAGNOSTIC_CLOUD</p>
+                 </div>
+                 
+                 <div class="map-viewport">
+                    <div class="map-container" style="width: 1300px; max-width: 100%; height: 600px; margin: 0 auto; background: rgba(0,0,0,0.5) url('../assets/images/global/network-map.png') center/cover no-repeat; border: 1px solid rgba(255,255,255,0.05); border-radius: 60px; position: relative; box-shadow: inset 0 0 100px rgba(0,0,0,0.8);">
+                    
+                    <!-- SVG Network Arcs -->
+                    <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.3;">
+                        <!-- Vancouver (234, 132) to NY (351, 168) -->
+                        <path d="M 234 132 Q 280 140 351 168" fill="none" stroke="var(--secondary)" stroke-width="1.5" class="network-path" />
+                        <!-- NY (351, 168) to London (630, 108) -->
+                        <path d="M 351 168 Q 450 120 630 108" fill="none" stroke="var(--secondary)" stroke-width="1.5" class="network-path" />
+                        <!-- London (630, 108) to Paris (647, 126) -->
+                        <path d="M 630 108 Q 635 115 647 126" fill="none" stroke="var(--secondary)" stroke-width="1.5" class="network-path" />
+                        <!-- Paris (647, 126) to Dubai (819, 228) -->
+                        <path d="M 647 126 Q 730 180 819 228" fill="none" stroke="var(--secondary)" stroke-width="1.5" class="network-path" />
+                        <!-- Dubai (819, 228) to Tokyo (1066, 168) -->
+                        <path d="M 819 228 Q 940 180 1066 168" fill="none" stroke="var(--secondary)" stroke-width="1.5" class="network-path" />
+                    </svg>
+
+                    <!-- Interactive Nodes -->
+                    <div class="map-node pulse-node" style="top: 22%; left: 18%;" data-city="VANCOUVER_UNIT">
+                        <span class="node-label">VAN_HQ</span>
+                    </div>
+                    <div class="map-node pulse-node" style="top: 28%; left: 27%; background: rgba(255,255,255,0.2); box-shadow: 0 0 10px white;" data-city="NYC_SURVEY">
+                        <span class="node-label" style="color: white; opacity: 0.5;">NYC_SPEC</span>
+                    </div>
+                    <div class="map-node pulse-node" style="top: 18%; left: 48.5%;" data-city="LONDON_UNIT">
+                        <span class="node-label">LON_PROT</span>
+                    </div>
+                    <div class="map-node pulse-node" style="top: 21%; left: 49.8%; background: rgba(255,255,255,0.2); box-shadow: 0 0 10px white;" data-city="PARIS_NODE">
+                        <span class="node-label" style="color: white; opacity: 0.5;">PAR_STRT</span>
+                    </div>
+                    <div class="map-node pulse-node" style="top: 38%; left: 63%;" data-city="DUBAI_ACTIVE">
+                        <span class="node-label">DXB_APEX</span>
+                    </div>
+                    <div class="map-node pulse-node" style="top: 28%; left: 82%;" data-city="TOKYO_PROJECT">
+                        <span class="node-label">TYO_HUB</span>
+                    </div>
+
+                    <!-- Map Legend -->
+                    <div style="position: absolute; bottom: 40px; right: 40px; text-align: left; background: rgba(0,0,0,0.8); backdrop-filter: blur(20px); padding: 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                            <div style="width: 10px; height: 10px; background: var(--secondary); border-radius: 50%; box-shadow: 0 0 10px var(--secondary);"></div>
+                             <span class="badge" style="padding: 4px 12px; font-size: 0.65rem;">ACTIVE_NETWORK</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 10px; height: 10px; background: rgba(255,255,255,0.2); border-radius: 50%;"></div>
+                             <span class="badge badge-glass" style="padding: 4px 12px; font-size: 0.65rem;">PLANNED_GRID</span>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <style>
+            .network-path {
+                stroke-dasharray: 10, 10;
+                animation: flow 20s linear infinite;
+            }
+
+            @keyframes flow {
+                from { stroke-dashoffset: 200; }
+                to { stroke-dashoffset: 0; }
+            }
+
+            .pulse-node::before {
+                content: '';
+                position: absolute;
+                top: -10px;
+                left: -10px;
+                right: -10px;
+                bottom: -10px;
+                border: 1px solid var(--secondary);
+                border-radius: 50%;
+                opacity: 0;
+                animation: pulse-ring 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+            }
+
+            @keyframes pulse-ring {
+                0% { transform: scale(0.5); opacity: 0; }
+                50% { opacity: 0.5; }
+                100% { transform: scale(2); opacity: 0; }
+            }
+
+            .node-label {
+                position: absolute;
+                top: -24px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-family: monospace;
+                font-size: 0.55rem;
+                letter-spacing: 2px;
+                font-weight: 900;
+                color: var(--secondary);
+                white-space: nowrap;
+                opacity: 0.8;
+            }
+        </style>
+
+        <!-- SECTION 4: OPERATIONAL CADENCE -->
+        <section class="section">
+            <div class="container">
+                <div class="grid grid-2 cadence-grid" style="gap: var(--s-12); align-items: center;">
+                    <div>
+                        <h2 style="font-size: var(--fs-h2); font-weight: 900; letter-spacing: -1.5px; margin-bottom: var(--s-6); color: var(--text);">Operational <span style="color: var(--secondary);">Cadence</span></h2>
+                        <p style="color: var(--text-muted); font-size: var(--fs-body); line-height: 1.8; margin-bottom: var(--s-8);">Our facilities operate on a high-density schedule to accommodate both professional diagnostics and late-night social play. Global sync protocols active across all zones.</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div style="background: rgba(var(--text-rgb), 0.02); padding: 20px; border-radius: 16px; border: 1px solid var(--border);">
+                                <p style="color: var(--secondary); font-size: var(--fs-body-xs); font-weight: 800; letter-spacing: 2px; margin-bottom: 4px;">PEAK_LOAD</p>
+                                <p style="color: var(--text); font-size: var(--fs-body-lg); font-weight: 700;">18:00 - 21:00</p>
+                            </div>
+                            <div style="background: rgba(46,124,102,0.1); padding: 20px; border-radius: 16px; border: 1px solid rgba(46,124,102,0.2);">
+                                <p style="color: #4ade80; font-size: var(--fs-body-xs); font-weight: 800; letter-spacing: 2px; margin-bottom: 4px;">MEMBER_ONLY</p>
+                                <p style="color: var(--text); font-size: var(--fs-body-lg); font-weight: 700;">07:00 - 09:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cadence-terminal" style="background: rgba(var(--text-rgb), 0.03); border: 1px solid var(--border); padding: 30px; border-radius: 40px; position: relative;">
+                        <!-- Time Grid -->
+                        <div style="display: flex; justify-content: space-between; padding-bottom: 20px; border-bottom: 1px solid var(--border); margin-bottom: 20px;">
+                            <span style="font-weight: 700; color: var(--text-muted);">WEEKDAY_ARRAY</span>
+                            <span style="font-family: monospace; color: var(--secondary); font-weight: 800;">07:00 — 23:00</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding-bottom: 20px; border-bottom: 1px solid var(--border); margin-bottom: 20px;">
+                            <span style="font-weight: 700; color: var(--text-muted);">EXPANDED_OPS (FRI/SAT)</span>
+                            <span style="font-family: monospace; color: var(--secondary); font-weight: 800;">06:00 — 01:00</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="font-weight: 700; color: var(--text-muted);">RECOVERY_PERIOD (SUN)</span>
+                            <span style="font-family: monospace; color: var(--secondary); font-weight: 800;">08:00 — 21:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: FAQ ACCORDION MATRIX -->
+        <section class="section" style="padding-bottom: 200px; background: var(--bg-alt);">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: var(--s-12);">
+                    <div class="badge badge-outline" style="margin-bottom: 12px;">
+                        <div style="width: 8px; height: 8px; background: #ff4d4d; border-radius: 50%;"></div>
+                        FAQs
+                    </div>
+                    <h2 style="font-size: var(--fs-h2); font-weight: 900; letter-spacing: -2px; margin-bottom: 16px; color: var(--text);">Frequently asked <span style="position: relative; z-index: 1;">questions<span style="position: absolute; bottom: 4px; left: -5%; width: 110%; height: 8px; background: var(--secondary); opacity: 0.3; z-index: -1; border-radius: 4px;"></span></span></h2>
+                    <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.8; font-size: var(--fs-body);">Here are some common questions about our sanctuaries and services to help you understand the Golfic ecosystem better.</p>
+                </div>
+
+                <div class="grid faq-accordion-grid" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <!-- Column 1 -->
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <!-- FAQ Item 1 -->
+                        <div class="faq-card" onclick="toggleFaq(this)">
+                            <div class="faq-header">
+                                <span class="faq-question">Who correlates to founding membership?</span>
+                                <div class="faq-toggle-icon"><i data-lucide="plus"></i></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Applications are open to all players, but vetted based on handicap, professional standing, or invitation from existing vanguard members. We maintain a high-precision registry to ensure an elite social and technical environment.</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 2 -->
+                        <div class="faq-card" onclick="toggleFaq(this)">
+                            <div class="faq-header">
+                                <span class="faq-question">What does suite calibration involve?</span>
+                                <div class="faq-toggle-icon"><i data-lucide="plus"></i></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Every session begins with a 60-second hardware calibration where our Trackman 4.0 units sync with your club profile and current atmospheric data, ensuring 99.9% accuracy for every subsequent shot.</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 3 -->
+                        <div class="faq-card" onclick="toggleFaq(this)">
+                            <div class="faq-header">
+                                <span class="faq-question">Can I book online globally?</span>
+                                <div class="faq-toggle-icon"><i data-lucide="plus"></i></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Yes. Your member credentials allow you to access the terminal for any Golfic unit worldwide. Your diagnostic data and personal preferences will follow you automatically through our global neural cloud.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 2 -->
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <!-- FAQ Item 4 -->
+                        <div class="faq-card" onclick="toggleFaq(this)">
+                            <div class="faq-header">
+                                <span class="faq-question">Is there food service in the suites?</span>
+                                <div class="faq-toggle-icon"><i data-lucide="plus"></i></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Every sanctuary includes tablet-driven access to our Gourmet Lounge Bites and Rare Spirits Library. Service is delivered with zero-latency protocols to ensure your session remains uninterrupted.</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 5 -->
+                        <div class="faq-card" onclick="toggleFaq(this)">
+                            <div class="faq-header">
+                                <span class="faq-question">What is the cancellation protocol?</span>
+                                <div class="faq-toggle-icon"><i data-lucide="plus"></i></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Cancellations must be processed via the member terminal at least 24 hours prior to slot engagement. Credits are instantly returned to your vanguard account for future deployment.</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 6 -->
+                        <div class="faq-card" onclick="toggleFaq(this)">
+                            <div class="faq-header">
+                                <span class="faq-question">Do I need to bring bespoke hardware?</span>
+                                <div class="faq-toggle-icon"><i data-lucide="plus"></i></div>
+                            </div>
+                            <div class="faq-answer">
+                                <p>While most vanguard members prefer their own custom equipment, every sanctuary is stocked with a curated fleet of the latest Titleist and TaylorMade clubs for guest and member use.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <style>
+            .faq-card {
+                background: var(--bg-card);
+                border: 1px solid var(--border);
+                border-radius: 24px;
+                padding: 30px;
+                cursor: pointer;
+                transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+                overflow: hidden;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            }
+
+            .faq-card:hover {
+                border-color: var(--secondary);
+                transform: translateY(-2px);
+            }
+
+            .faq-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .faq-question {
+                font-weight: 800;
+                font-size: var(--fs-body);
+                color: var(--text);
+                letter-spacing: -0.5px;
+            }
+
+            .faq-toggle-icon {
+                width: 32px;
+                height: 32px;
+                background: #000;
+                color: #fff;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                transition: transform 0.3s ease;
+            }
+
+            body.dark-layout .faq-toggle-icon {
+                background: var(--secondary);
+                color: var(--primary);
+            }
+
+            .faq-answer {
+                height: 0;
+                opacity: 0;
+                overflow: hidden;
+                transition: all 0.4s ease;
+                margin-top: 0;
+            }
+
+            .faq-answer p {
+                color: var(--text-muted);
+                font-size: var(--fs-body);
+                line-height: 1.6;
+                padding-top: 20px;
+            }
+
+            /* Active State */
+            .faq-card.active .faq-answer {
+                height: auto;
+                opacity: 1;
+                margin-top: 10px;
+            }
+
+            .faq-card.active .faq-toggle-icon {
+                transform: rotate(45deg);
+                background: var(--secondary);
+                color: #000;
+            }
+        </style>
+
+        <script>
+            function toggleFaq(card) {
+                // Close all other cards in the same grid if needed (Optional)
+                // const allCards = document.querySelectorAll('.faq-card');
+                // allCards.forEach(c => { if(c !== card) c.classList.remove('active'); });
+
+                card.classList.toggle('active');
+                
+                // Update icon if using lucide
+                const icon = card.querySelector('.faq-toggle-icon i');
+                if (card.classList.contains('active')) {
+                    icon.setAttribute('data-lucide', 'plus'); // It rotates 45 deg via CSS to look like X or just keep it
+                } else {
+                    icon.setAttribute('data-lucide', 'plus');
+                }
+                lucide.createIcons();
+            }
+        </script>
+    </main>
+
+    <!-- Global Footer Hook -->
+    <div id="footer-global"></div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golfic | Our Story</title>
+    
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide/dist/umd/lucide.js"></script>
+
+    <style>
+        :root {
+            /* Using standard tokens from style.css to match Home v1 */
+        }
+
+        .hero-about {
+            min-height: 70vh;
+            background: linear-gradient(rgba(11,61,46,0.8), rgba(0,0,0,0.8)), url('../assets/images/about/herosection-img.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 100px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: var(--s-8);
+            text-align: center;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            border-left: 1px solid var(--secondary);
+            margin-bottom: var(--s-10);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            background: var(--secondary);
+            border-radius: 50%;
+        }
+
+        .value-card {
+            padding: var(--s-6);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .value-card:hover {
+            border-color: var(--secondary);
+            background: var(--bg-alt);
+        }
+
+        /* Architect Card Interactions */
+        .architect-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        
+        .architect-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.1);
+            border-color: rgba(212,175,55,0.3) !important;
+        }
+
+        .architect-card:hover .architect-grid {
+            opacity: 0.15 !important;
+        }
+
+        .architect-card:hover .architect-info {
+            bottom: 0px !important;
+            left: 0px !important;
+            right: 0px !important;
+            padding: 40px 30px !important;
+            background: rgba(0,0,0,0.8) !important;
+            backdrop-filter: blur(20px) !important;
+            width: 100% !important;
+        }
+
+        .architect-card:hover .architect-bio {
+            max-height: 400px !important;
+            margin-top: 20px !important;
+            opacity: 1 !important;
+        }
+
+        .architect-bio {
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        /* [LOCKED] ABOUT PAGE TABLET RESPONSIVENESS (768px - 1024px) */
+        @media (max-width: 1024px) {
+            .hero-about { min-height: 40vh !important; padding-top: 100px !important; }
+            .hero-about h1 { font-size: 3rem !important; }
+        }
+
+        /* [LOCKED] ABOUT PAGE TABLET ALIGNMENT (768px) */
+        @media (max-width: 768px) {
+            .hero-about { text-align: center; }
+            .hero-about p { font-size: 1rem !important; }
+            .final-invite-container { padding: var(--s-8) var(--s-6) !important; border-radius: 24px !important; }
+            .final-invite-grid { gap: var(--s-10) !important; }
+            .final-invite-grid h2 { font-size: 32px !important; }
+        }
+
+        /* [LOCKED] ABOUT PAGE MOBILE RESPONSIVENESS (320px - 480px) */
+        @media (max-width: 480px) {
+            .hero-about h1 { font-size: 2.25rem !important; }
+            .hero-about p { font-size: 0.95rem !important; }
+            .final-invite-container { padding: var(--s-4) var(--s-3) !important; }
+            .final-invite-grid h2 { font-size: 28px !important; }
+            .final-invite-grid .btn { width: 100% !important; padding: 15px 24px !important; text-align: center; }
+            .perks-card { padding: var(--s-4) var(--s-3) !important; }
+            .our-why-grid { gap: var(--s-10) !important; }
+            .our-why-img { height: 300px !important; }
+            .floating-metric { 
+                position: relative !important; 
+                bottom: 0 !important; 
+                right: 0 !important; 
+                margin-top: -40px !important; 
+                margin-left: 20px !important;
+                width: calc(100% - 40px) !important;
+            }
+            .tech-grid { grid-template-columns: 1fr !important; gap: var(--s-10) !important; }
+            .tech-img { height: 350px !important; }
+        }
+    </style>
+</head>
+<body class="loading">
+
+    <!-- Global Header Hook -->
+    <div id="header-global"></div>
+
+    <main>
+        <!-- SECTION 1: HERO -->
+        <section class="hero-about">
+            <div class="container text-center">
+                <div class="badge badge-outline" style="margin-bottom: var(--s-6);">
+                    BEYOND THE GREEN
+                </div>
+                <h1 style="color: white; font-size: var(--fs-h1); line-height: 1.1; margin-bottom: var(--s-6); font-weight: 900; letter-spacing: -2px;">
+                    We Are The <span style="color: var(--secondary);">Frame Builders</span>
+                </h1>
+                <p style="color: rgba(255,255,255,0.8); font-size: var(--fs-body-lg); max-width: 1000px; margin: 0 auto; line-height: 1.8; font-weight: 400;">
+                    Founded at the intersection of Silicon Valley precision and West Coast luxury, Golfic is dedicated to mastering the indoor game through technological mastery and unparalleled hospitality.
+                </p>
+            </div>
+        </section>
+
+        <section class="section reveal">
+            <div class="container">
+                <div class="grid grid-2 our-why-grid" style="gap: var(--s-16); align-items: center;">
+                    <div class="reveal-left">
+                        <div class="reveal" style="display: flex; align-items: center; gap: 12px; margin-bottom: var(--s-4);">
+                            <div style="width: 40px; height: 1px; background: var(--secondary);"></div>
+                            <span class="text-label">Our Why</span>
+                        </div>
+                        <h2 class="reveal" style="font-size: var(--fs-h2); margin-bottom: var(--s-6);">Democratizing <br><span class="text-accent">Elite Performance</span></h2>
+                        <p class="text-muted reveal" style="line-height: 1.8; font-size: 1.1rem; margin-bottom: var(--s-8);">
+                            We believe that every player deserves access to the same diagnostic precision as the masters. Our mission is to provide an uncompromising environment where data and luxury coexist, allowing you to refine your craft 365 days a year.
+                        </p>
+                        <div class="grid reveal" style="grid-template-columns: 1fr 1fr; gap: var(--s-4);">
+                            <div class="hover-scale">
+                                <h3 style="font-size: 2.5rem; color: var(--secondary); margin-bottom: 0;">10k+</h3>
+                                <p class="text-xs text-muted" style="letter-spacing: 1px; font-weight: 700;">SWINGS ANALYZED</p>
+                            </div>
+                            <div class="hover-scale">
+                                <h3 style="font-size: 2.5rem; color: var(--secondary); margin-bottom: 0;">99.9%</h3>
+                                <p class="text-xs text-muted" style="letter-spacing: 1px; font-weight: 700;">DATA ACCURACY</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reveal-right" style="position: relative;">
+                        <div class="hover-scale our-why-img" style="height: 500px; background: url('../assets/images/about/Our Why.jpg') center/cover no-repeat; border-radius: 4px; border: 1px solid var(--border);"></div>
+                        <!-- Floating Metric Badge (Adjusted for mobile) -->
+                        <div class="floating-metric" style="position: absolute; bottom: 30px; right: 10px; background: var(--primary); padding: 25px 35px; border-radius: 4px; color: white; box-shadow: 0 20px 40px rgba(0,0,0,0.3); z-index: 10;">
+                             <p style="font-size: 0.6rem; color: var(--secondary); letter-spacing: 3px; font-weight: 800; margin-bottom: 8px;">CORE METRIC</p>
+                             <p style="font-size: 1.2rem; font-weight: 800;">40+ Data Points</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: LEADERSHIP -->
+        <section class="section reveal" style="background-color: var(--primary);">
+            <div class="container text-center">
+                <span class="text-label reveal" style="margin-bottom: 12px; display: block;">THE ARCHITECTS</span>
+                <h2 class="reveal" style="color: white; font-size: var(--fs-h2); margin-bottom: var(--s-12);">Visionary <span style="color: var(--secondary);">Leadership</span></h2>
+                
+                <div class="grid grid-4" style="gap: var(--s-4);">
+                    
+                    <!-- ARCHITECT 1 -->
+                    <div class="architect-card" style="height: 520px; background: linear-gradient(0deg, #0B1215 0%, rgba(11,18,21,0.2) 50%, rgba(11,18,21,0) 100%), url('../assets/images/home-v2/Marcus Vane.jpg') center top/cover no-repeat; background-color: #0B1215; border-radius: 32px; overflow: hidden; position: relative; cursor: pointer; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255,255,255,0.05);">
+                        <div class="architect-grid" style="position: absolute; inset: 0; opacity: 0; background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 20px 20px; transition: 0.5s; z-index: 1;"></div>
+                        
+                        <div class="architect-info" style="position: absolute; bottom: 30px; left: 30px; right: 30px; text-align: left; transition: all 0.5s; z-index: 2;">
+                            <h4 style="color: white; margin-bottom: 2px; font-size: 1.25rem;">Marcus Vane</h4>
+                            <p style="color: var(--secondary); font-size: 0.65rem; letter-spacing: 2px; font-weight: 800; text-transform: uppercase;">Founder & CEO</p>
+                            <p class="architect-bio" style="color: rgba(255,255,255,0.7); font-size: 0.8rem; line-height: 1.6; margin-top: 20px; max-height: 0; overflow: hidden; transition: all 0.5s; font-weight: 300;">
+                                A former Silicon Valley venture architect with a lifelong passion for the game. Marcus spent 15 years developing high-precision sensor technologies before founding Golfic. His vision was to create a "Third Space" that bridges the gap between raw data analysis and the warmth of West Coast luxury hospitality.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- ARCHITECT 2 -->
+                    <div class="architect-card" style="height: 520px; background: linear-gradient(0deg, #0B1215 0%, rgba(11,18,21,0.2) 50%, rgba(11,18,21,0) 100%), url('../assets/images/home-v2/Sarah Jenkins.jpg') center top/cover no-repeat; background-color: #0B1215; border-radius: 32px; overflow: hidden; position: relative; cursor: pointer; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255,255,255,0.05);">
+                        <div class="architect-grid" style="position: absolute; inset: 0; opacity: 0; background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 20px 20px; transition: 0.5s; z-index: 1;"></div>
+                        
+                        <div class="architect-info" style="position: absolute; bottom: 30px; left: 30px; right: 30px; text-align: left; transition: all 0.5s; z-index: 2;">
+                            <h4 style="color: white; margin-bottom: 2px; font-size: 1.25rem;">Sarah Jenkins</h4>
+                            <p style="color: var(--secondary); font-size: 0.65rem; letter-spacing: 2px; font-weight: 800; text-transform: uppercase;">Experience Officer</p>
+                            <p class="architect-bio" style="color: rgba(255,255,255,0.7); font-size: 0.8rem; line-height: 1.6; margin-top: 20px; max-height: 0; overflow: hidden; transition: all 0.5s; font-weight: 300;">
+                                With a background in managing ultra-luxury estates in Malibu, Sarah is the curator of the "Sanctuary" aesthetic. She believes that the environment is just as important as the swing. Sarah leads our Guest Services team, ensuring that every member interaction feels personalized, warm, and impeccably timed.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- ARCHITECT 3 -->
+                    <div class="architect-card" style="height: 520px; background: linear-gradient(0deg, #0B1215 0%, rgba(11,18,21,0.2) 50%, rgba(11,18,21,0) 100%), url('../assets/images/about/Alex Rivera.jpg') center center/cover no-repeat; background-color: #0B1215; border-radius: 32px; overflow: hidden; position: relative; cursor: pointer; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255,255,255,0.05);">
+                        <div class="architect-grid" style="position: absolute; inset: 0; opacity: 0; background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 20px 20px; transition: 0.5s; z-index: 1;"></div>
+                        
+                        <div class="architect-info" style="position: absolute; bottom: 30px; left: 30px; right: 30px; text-align: left; transition: all 0.5s; z-index: 2;">
+                            <h4 style="color: white; margin-bottom: 2px; font-size: 1.25rem;">Alex Rivera</h4>
+                            <p style="color: var(--secondary); font-size: 0.65rem; letter-spacing: 2px; font-weight: 800; text-transform: uppercase;">Tech Director</p>
+                            <p class="architect-bio" style="color: rgba(255,255,255,0.7); font-size: 0.8rem; line-height: 1.6; margin-top: 20px; max-height: 0; overflow: hidden; transition: all 0.5s; font-weight: 300;">
+                                Alex is the mastermind behind the Golfic standard. He specialized in high-frequency radar integration at the European Space Agency before pivoting to golf. He oversees our Trackman 4.0 arrays and NVIDIA rendering pipelines, ensuring that our 99.9% accuracy claim remains the industry benchmark.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- ARCHITECT 4 -->
+                    <div class="architect-card" style="height: 520px; background: linear-gradient(0deg, #0B1215 0%, rgba(11,18,21,0.2) 50%, rgba(11,18,21,0) 100%), url('../assets/images/home-v2/David Cho.jpg') 50% 20%/cover no-repeat; background-color: #0B1215; border-radius: 32px; overflow: hidden; position: relative; cursor: pointer; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255,255,255,0.05);">
+                        <div class="architect-grid" style="position: absolute; inset: 0; opacity: 0; background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 20px 20px; transition: 0.5s; z-index: 1;"></div>
+                        
+                        <div class="architect-info" style="position: absolute; bottom: 30px; left: 30px; right: 30px; text-align: left; transition: all 0.5s; z-index: 2;">
+                            <h4 style="color: white; margin-bottom: 2px; font-size: 1.25rem;">David Cho</h4>
+                            <p style="color: var(--secondary); font-size: 0.65rem; letter-spacing: 2px; font-weight: 800; text-transform: uppercase;">League Director</p>
+                            <p class="architect-bio" style="color: rgba(255,255,255,0.7); font-size: 0.8rem; line-height: 1.6; margin-top: 20px; max-height: 0; overflow: hidden; transition: all 0.5s; font-weight: 300;">
+                                David's mission is to build the world's most engaging indoor golf community. A former collegiate golf manager, he engineered the "Golfic Circuit"—a data-driven seasonal league that combines high-stakes competition with the social energy of our lounge. He ensures the sanctuary stays alive with play.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: CORE VALUES -->
+        <section class="section">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: var(--s-12);">
+                    <h2 style="font-size: var(--fs-h2);">The Golfic <span class="text-accent">Standard</span></h2>
+                    <p class="text-muted" style="max-width: 600px; margin: 0 auto;">Our five pillars of uncompromising service that define the Golfic experience.</p>
+                </div>
+                <div class="grid grid-4" style="gap: var(--s-6);">
+                    <div class="value-card">
+                        <i data-lucide="crosshair" style="width: 32px; color: var(--secondary); margin-bottom: var(--s-4);"></i>
+                        <h4 style="margin-bottom: 12px;">Radical Precision</h4>
+                        <p class="text-sm text-muted">Zero tolerance for sensory lag or data inaccuracy.</p>
+                    </div>
+                    <div class="value-card">
+                        <i data-lucide="shield-check" style="width: 32px; color: var(--secondary); margin-bottom: var(--s-4);"></i>
+                        <h4 style="margin-bottom: 12px;">Elite Privacy</h4>
+                        <p class="text-sm text-muted">A sanctuary designed for focused, uninterrupted play.</p>
+                    </div>
+                    <div class="value-card">
+                        <i data-lucide="coffee" style="width: 32px; color: var(--secondary); margin-bottom: var(--s-4);"></i>
+                        <h4 style="margin-bottom: 12px;">West Coast Hospitality</h4>
+                        <p class="text-sm text-muted">Warm, professional, and meticulously tailored service.</p>
+                    </div>
+                    <div class="value-card">
+                        <i data-lucide="cpu" style="width: 32px; color: var(--secondary); margin-bottom: var(--s-4);"></i>
+                        <h4 style="margin-bottom: 12px;">Tech Integration</h4>
+                        <p class="text-sm text-muted">Always at the absolute leading edge of global diagnostics.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: OUR TECHNOLOGY -->
+        <section class="section" style="background-color: var(--primary); color: white;">
+            <div class="container">
+                <div class="grid tech-grid" style="grid-template-columns: 1fr 1fr; gap: var(--s-16); align-items: center;">
+                    <div style="background: rgba(255,255,255,0.03); padding: var(--s-6); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px;">
+                        <h2 style="color: white; font-size: var(--fs-h2); margin-bottom: var(--s-6);">The System <span style="color: var(--secondary);">Standard</span></h2>
+                        <div class="timeline-item">
+                            <h4 style="color: white; margin-bottom: 8px;"><span style="color: var(--secondary);">Trackman 4.0</span> Dual-Radar</h4>
+                            <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">The same technology used by 90% of the PGA tour professionals for ball and club analysis.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4 style="color: white; margin-bottom: 8px;"><span style="color: var(--secondary);">NVIDIA RTX</span> Visualization</h4>
+                            <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Ultra-high definition rendering of 100+ global courses with zero-latency physics.</p>
+                        </div>
+                        <div class="timeline-item" style="margin-bottom: 0;">
+                            <h4 style="color: white; margin-bottom: 8px;"><span style="color: var(--secondary);">Biometric</span> Pressure Mats</h4>
+                            <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">Real-time weight transfer analysis to master your balance and power generation.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="tech-img" style="height: 550px; background: url('../assets/images/about/System Standard.jpg') center/cover no-repeat; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: GLOBAL VISION -->
+        <section class="section">
+            <div class="container text-center">
+                <div style="max-width: 1250px; margin: 0 auto;">
+                    <h2 style="font-size: var(--fs-h2); margin-bottom: var(--s-6);">Future <span class="text-accent">Expansion</span></h2>
+                    <p class="text-muted" style="line-height: 1.8; margin-bottom: var(--s-10); max-width: 800px; margin-left: auto; margin-right: auto;">Golfic is growing. With our Q3 expansion into the London and Tokyo markets, we are building a global network of elite indoor sanctuaries for the modern traveler.</p>
+                    <div style="height: 480px; background: #05161A; border: 1px solid rgba(255,255,255,0.05); border-radius: 32px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 100px rgba(0,0,0,0.5);">
+                         
+                         <!-- Geometric Network Grid -->
+                         <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(212,175,55,0.05) 1px, transparent 1px); background-size: 40px 40px; opacity: 0.5;"></div>
+                         
+                         <!-- Stylized World Map Watermark (INCREASED VISIBILITY & SCALE) -->
+                         <div style="position: absolute; width: 160%; height: 160%; background: url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg') center/contain no-repeat; filter: invert(1) brightness(0.1) opacity(0.4); transform: scale(1.3);"></div>
+
+                         <div style="z-index: 2; display: flex; gap: var(--s-8); width: 100%; padding: 0 var(--s-10); justify-content: space-around; flex-wrap: wrap;">
+                             
+                             <!-- ACTIVE NODE -->
+                             <div style="background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); padding: 24px; border-radius: 16px; min-width: 200px; text-align: left; position: relative; transform: translateY(-20px);">
+                                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                                     <div style="width: 8px; height: 8px; background: #4ade80; border-radius: 50%; opacity: 1; box-shadow: 0 0 10px #4ade80;"></div>
+                                     <span style="color: #4ade80; font-size: 0.65rem; letter-spacing: 2px; font-weight: 800; text-transform: uppercase;">Node Active</span>
+                                 </div>
+                                 <h4 style="color: white; margin-bottom: 4px; font-size: 1.1rem; letter-spacing: 1px;">VANCOUVER</h4>
+                                 <p style="color: rgba(255,255,255,0.4); font-size: 0.7rem; font-family: monospace;">LAT: 49.2827° N / LNG: 123.1207° W</p>
+                             </div>
+
+                             <!-- Q3 NODE -->
+                             <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.05); padding: 24px; border-radius: 16px; min-width: 200px; text-align: left; opacity: 0.6;">
+                                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                                     <div style="width: 8px; height: 8px; background: var(--secondary); border-radius: 50%; opacity: 0.5;"></div>
+                                     <span style="color: var(--secondary); font-size: 0.65rem; letter-spacing: 2px; font-weight: 800; text-transform: uppercase;">Scheduled Q3</span>
+                                 </div>
+                                 <h4 style="color: white; margin-bottom: 4px; font-size: 1.1rem; letter-spacing: 1px;">LONDON</h4>
+                                 <p style="color: rgba(255,255,255,0.4); font-size: 0.7rem; font-family: monospace;">STATUS: ARCHITECTURAL PHASE</p>
+                             </div>
+
+                             <!-- Q1 NODE -->
+                             <div style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.05); padding: 24px; border-radius: 16px; min-width: 200px; text-align: left; opacity: 0.4; transform: translateY(20px);">
+                                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                                     <div style="width: 8px; height: 8px; background: #94a3b8; border-radius: 50%;"></div>
+                                     <span style="color: #94a3b8; font-size: 0.65rem; letter-spacing: 2px; font-weight: 800; text-transform: uppercase;">Vision Q1 2027</span>
+                                 </div>
+                                 <h4 style="color: white; margin-bottom: 4px; font-size: 1.1rem; letter-spacing: 1px;">TOKYO</h4>
+                                 <p style="color: rgba(255,255,255,0.4); font-size: 0.7rem; font-family: monospace;">REGION: APAC INQUIRY</p>
+                             </div>
+
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: FINAL CTA (MEMBERSHIP) -->
+        <section class="section" style="padding-bottom: 100px;">
+            <div class="container">
+                <div class="final-invite-container" style="background: radial-gradient(circle at top right, #12523E 0%, #0B1215 100%); border-radius: 48px; padding: var(--s-12); color: white; position: relative; overflow: hidden; box-shadow: 0 50px 120px rgba(0,0,0,0.5); border: 1px solid rgba(212,175,55,0.2);">
+                    
+                    <!-- Decorative Background Elements -->
+                    <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: var(--secondary); opacity: 0.03; filter: blur(100px);"></div>
+                    <div style="position: absolute; inset: 0; opacity: 0.1; background-image: linear-gradient(rgba(212,175,55,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.1) 1px, transparent 1px); background-size: 50px 50px; pointer-events: none;"></div>
+                    
+                    <div class="grid grid-2 final-invite-grid" style="gap: var(--s-10); position: relative; z-index: 2;">
+                        
+                        <!-- LEFT COLUMN: EMOTION & BRAND -->
+                        <div style="text-align: left;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: var(--s-6);">
+                                <div style="width: 30px; height: 1px; background: var(--secondary);"></div>
+                                <span class="text-label">Final Invite</span>
+                            </div>
+                            <h2 style="color: white !important; font-size: 48px; line-height: 1; margin-bottom: 20px; font-weight: 900; letter-spacing: -2px; text-transform: uppercase;">
+                                The <span style="color: var(--secondary);">Sanctuary</span> Awaits.
+                            </h2>
+                            <p style="color: rgba(255,255,255,0.7); font-size: 1.1rem; line-height: 1.8; margin-bottom: var(--s-10); font-weight: 300; max-width: 500px;">
+                                "The game doesn't end at sunset. We've built a world where precision meets peace, and data meets the soul." — Marcus Vane
+                            </p>
+                            <div style="display: flex; gap: var(--s-4); flex-wrap: wrap;">
+                                <a href="signup.html" class="btn btn-gold" style="padding: 20px 48px; border-radius: 4px; font-weight: 900; letter-spacing: 2px; box-shadow: 0 15px 30px rgba(212,175,55,0.2);">APPLY NOW</a>
+                                <a href="contact.html" class="btn" style="border: 1px solid rgba(255,255,255,0.2); color: white; padding: 20px 48px; border-radius: 4px; font-weight: 800; letter-spacing: 2px; backdrop-filter: blur(10px);">INQUIRE</a>
+                            </div>
+                        </div>
+
+                        <!-- RIGHT COLUMN: STATUS & PERKS -->
+                        <div class="perks-card" style="background: rgba(255,255,255,0.03); backdrop-filter: blur(30px); border: 1px solid rgba(255,255,255,0.1); border-radius: 32px; padding: var(--s-8);">
+                            <div style="margin-bottom: var(--s-8);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                    <span style="color: white; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;">Founding Membership Capacity</span>
+                                    <span style="color: #4ade80; font-size: 0.8rem; font-weight: 800;">88% FULL</span>
+                                </div>
+                                <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
+                                    <div style="width: 88%; height: 100%; background: linear-gradient(90deg, var(--secondary), #4ade80); border-radius: 10px; position: relative;">
+                                        <div style="position: absolute; right: 0; top: 0; width: 10px; height: 100%; background: white; filter: blur(4px); animation: pulse 2s infinite;"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="display: grid; gap: var(--s-6);">
+                                <div style="display: flex; gap: 16px; align-items: center;">
+                                    <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1);">
+                                        <i data-lucide="shield-check" style="width: 18px; color: var(--secondary);"></i>
+                                    </div>
+                                    <div>
+                                        <p style="color: white; font-size: 0.85rem; font-weight: 700; margin-bottom: 2px;">Private Member Suite Access</p>
+                                        <p style="color: rgba(255,255,255,0.4); font-size: 0.7rem;">Priority booking for all 4K simulation bays.</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 16px; align-items: center;">
+                                    <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1);">
+                                        <i data-lucide="users" style="width: 18px; color: var(--secondary);"></i>
+                                    </div>
+                                    <div>
+                                        <p style="color: white; font-size: 0.85rem; font-weight: 700; margin-bottom: 2px;">The Golfic Circuit Invitations</p>
+                                        <p style="color: rgba(255,255,255,0.4); font-size: 0.7rem;">Exclusive entry into high-stakes seasonal leagues.</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 16px; align-items: center;">
+                                    <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1);">
+                                        <i data-lucide="sparkles" style="width: 18px; color: var(--secondary);"></i>
+                                    </div>
+                                    <div>
+                                        <p style="color: white; font-size: 0.85rem; font-weight: 700; margin-bottom: 2px;">Founding Partner Privileges</p>
+                                        <p style="color: rgba(255,255,255,0.4); font-size: 0.7rem;">Lifetime benefits and global lounge reciprocity.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Global Footer Hook -->
+    <div id="footer-global"></div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golfic | The Cinematic Experience</title>
+    
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide/dist/umd/lucide.js"></script>
+
+    <style>
+        /* Home v2 Specific Refinements */
+        :root {
+            --h1-v2: 3rem; /* 48px Fixed */
+            --h2-v2: clamp(2rem, 4vw, 3rem);
+        }
+
+        .hero-v2 {
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            background-color: var(--primary);
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        .hero-v2::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 70% 30%, rgba(212,175,55,0.15) 0%, transparent 70%);
+            z-index: 1;
+        }
+
+        .hero-v2 .grid {
+            position: relative;
+            z-index: 2;
+        }
+
+        .v2-num {
+            font-size: 8rem;
+            font-weight: 900;
+            color: rgba(11,61,46,0.05);
+            position: absolute;
+            top: -2rem;
+            left: -1rem;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .card-v2 {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: var(--s-10);
+            transition: var(--transition);
+        }
+
+        .card-v2:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .glass-detail {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: var(--s-8);
+        }
+
+        .img-stack {
+            position: relative;
+            height: 500px;
+        }
+
+        .img-stack-main {
+            width: 85%;
+            height: 90%;
+            background: var(--bg-alt);
+            border-radius: 4px;
+        }
+
+        .img-stack-sub {
+            width: 50%;
+            height: 60%;
+            background: #222;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border: 8px solid var(--bg-main);
+            border-radius: 4px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .glass-float-card {
+            position: absolute;
+            bottom: 30px;
+            left: -40px;
+            width: 320px;
+        }
+
+        .v2-founder-banner {
+            padding: var(--s-10) var(--s-12);
+        }
+
+        .v2-founder-form {
+            padding: var(--s-8) var(--s-10);
+        }
+
+        .v2-final-cta {
+            padding: var(--s-10) var(--s-12);
+        }
+
+        @media (max-width: 1024px) {
+            /* [LOCKED] HOME V2 MOBILE RESPONSIVENESS (320px) */
+            .hero-v2 { height: auto; padding: 140px 0 80px; }
+            .v2-num { display: none; }
+            .img-stack { 
+                height: 300px !important; 
+                margin-bottom: 40px; 
+                width: 100% !important;
+            }
+            .img-stack-main {
+                width: 100% !important;
+                height: 100% !important;
+            }
+            .img-stack-sub {
+                left: 10px !important; /* Move inside boundary */
+                bottom: -10px !important;
+                width: 80px !important;
+                height: 80px !important;
+            }
+            .glass-float-card {
+                position: relative;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                margin-top: var(--s-6);
+                padding: 20px !important;
+            }
+            .glass-float-card p:nth-child(2) {
+                font-size: 1.1rem !important;
+            }
+            .glass-float-card h4 {
+                font-size: 0.65rem !important;
+                letter-spacing: 2px !important;
+            }
+            .glass-float-card .text-xs {
+                font-size: 0.6rem !important;
+                letter-spacing: 1px !important;
+            }
+            .v2-founder-banner {
+                padding: var(--s-6) var(--s-4);
+                border-radius: 20px;
+            }
+            .v2-founder-form {
+                padding: var(--s-6) var(--s-4);
+                border-radius: 20px;
+            }
+            .v2-final-cta {
+                padding: var(--s-10) var(--s-4);
+                border-radius: 20px;
+            }
+            .sanctuary-amenities {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: var(--s-6) !important;
+                text-align: center;
+                justify-items: center;
+            }
+            .sanctuary-amenities .flex {
+                flex-direction: column;
+                align-items: center !important;
+                text-align: center;
+            }
+            .glass-detail {
+                padding: var(--s-4) !important;
+            }
+            .v2-sanctuary-grid {
+                grid-template-columns: 1fr !important;
+                gap: var(--s-10) !important;
+            }
+            .v2-sanctuary-grid .reveal-right {
+                text-align: center;
+            }
+            .v2-sanctuary-grid .reveal-right div:first-child {
+                justify-content: center;
+            }
+            .v2-sanctuary-grid .reveal-right p {
+                margin: 0 auto var(--s-8) !important;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .sanctuary-amenities {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</head>
+<body class="loading">
+
+    <!-- Global Header Hook -->
+    <div id="header-global"></div>
+
+    <main>
+        <!-- NEW CINEMATIC SPLIT HERO -->
+        <section class="hero-v2" style="background-color: var(--primary); min-height: 100vh; display: flex; align-items: center; overflow: hidden; position: relative; padding-top: 140px; padding-bottom: 60px;">
+            <div class="container" style="max-width: 1300px !important; margin: 0 auto; width: 100%;">
+                <div class="grid grid-2" style="align-items: center; gap: var(--s-12); width: 100%;">
+                    
+                    <!-- LEFT COLUMN: THE NARRATIVE -->
+                    <div class="reveal-left" style="position: relative; z-index: 10; text-align: left;">
+                        <div class="badge badge-outline reveal" style="margin-bottom: var(--s-6);">
+                            THE APEX OF INDOOR GOLF
+                        </div>
+                        <h1 class="reveal" style="color: #ffffff !important; line-height: 1.1; margin-bottom: var(--s-6); text-transform: uppercase; font-weight: 900; letter-spacing: -1px; display: block !important;">
+                            Precision Meets <br><span style="color: var(--secondary);">Absolute Luxury</span>
+                        </h1>
+                        <p class="reveal" style="color: rgba(255,255,255,0.8) !important; font-size: var(--fs-body-lg); line-height: 1.8; margin-bottom: var(--s-10); font-weight: 300; max-width: 650px; letter-spacing: 0.2px;">
+                            Step into a sanctuary where state-of-the-art Trackman technology meets the height of bespoke West Coast hospitality. Your game, redefined in every frame.
+                        </p>
+                        <div class="reveal" style="display: flex; gap: var(--s-4); align-items: center;">
+                            <a href="booking.html" class="btn btn-gold" style="padding: 18px 48px; border-radius: 0; font-weight: 800; letter-spacing: 2px;">BOOK A BAY</a>
+                            <a href="#about" class="btn" style="border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 0; padding: 18px 48px; letter-spacing: 2px;">THE EXPERIENCE</a>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: THE ANCHOR -->
+                    <div class="reveal-right hero-img-anchor" style="position: relative; width: 100%;">
+                        <div class="hover-scale hero-v2-main-img" style="width: 100%; height: 580px; background: url('../assets/images/home-v2/herosection-img.jpg') center/cover no-repeat; border-radius: 4px; position: relative;">
+                             <!-- Floating Glass Card (REPOSITIONED) -->
+                             <div class="reveal glass-float-card" style="background: rgba(11,61,46,0.95); backdrop-filter: blur(30px); border: 1px solid var(--secondary); padding: var(--s-8); border-radius: 4px; box-shadow: 0 40px 100px rgba(0,0,0,0.6); z-index: 10;">
+                                 <h4 style="color: var(--secondary); letter-spacing: 4px; font-size: 0.75rem; margin-bottom: 12px; font-weight: 900;">SYSTEM CORE</h4>
+                                 <p style="color: white; font-weight: 800; font-size: 1.6rem; line-height: 1.1; margin-bottom: 8px;">Trackman 4.0</p>
+                                 <p class="text-xs" style="color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 2px;">99.9% Flight Accuracy</p>
+                                 <div style="margin: 20px 0; height: 1px; background: rgba(255,255,255,0.1);"></div>
+                                 <div style="display: flex; align-items: center; gap: 10px;">
+                                     <div style="width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80;"></div>
+                                     <span style="color: white; font-size: 0.8rem; font-weight: 700;">SENSORS ONLINE</span>
+                                 </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="about" class="section reveal">
+            <div class="container">
+                <div class="grid grid-2 v2-sanctuary-grid" style="align-items: center;">
+                    <!-- LEFT SIDE: MODULAR IMAGE STACK -->
+                    <div class="img-stack reveal-left" style="position: relative;">
+                        <span class="v2-num" style="top: -40px; left: -20px; opacity: 0.1;">01</span>
+                        <div class="img-stack-main hover-scale" style="width: 100%; background: url('../assets/images/home-v2/The Sanctuary.jpg') center/cover no-repeat; border: 1px solid var(--border);"></div>
+                        <div class="img-stack-sub reveal" style="width: 35%; height: 40%; left: -20px; bottom: -20px; right: auto; background: var(--primary); border: none; box-shadow: 0 30px 60px rgba(0,0,0,0.3);">
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--secondary); text-align: center; width: 100%;">
+                                <i data-lucide="award" style="width: 32px; height: 32px; margin-bottom: 6px;"></i>
+                                <p style="font-size: 0.75rem; letter-spacing: 2px; font-weight: 900;">ELITE</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT SIDE: THE NARRATIVE -->
+                    <div class="reveal-right">
+                        <div class="reveal" style="display: flex; align-items: center; gap: 12px; margin-bottom: var(--s-4);">
+                            <div style="width: 40px; height: 1px; background: var(--secondary);"></div>
+                            <span class="text-label">The Sanctuary</span>
+                        </div>
+                        <h2 class="reveal" style="font-size: var(--h2-v2); line-height: 1.1; margin-bottom: var(--s-6);">Uncompromising <br><span class="text-accent">West Coast Comfort</span></h2>
+                        <p class="text-muted reveal" style="line-height: 1.8; font-size: 1.1rem; margin-bottom: var(--s-8); max-width: 550px;">
+                            Step into a space where every touchpoint is designed for the discerning player. From Italian leather seating to curated ambient acoustics, our lounge is meticulously crafted to be your second home.
+                        </p>
+                        
+                        <div class="grid reveal sanctuary-amenities" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6); margin-top: var(--s-8);">
+                            <div class="flex hover-scale" style="gap: 12px; align-items: flex-start;">
+                                <div style="background: rgba(212,175,55,0.1); padding: 10px; border-radius: 4px;">
+                                    <i data-lucide="sofa" class="text-accent" style="width: 20px; height: 20px;"></i>
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 0.9rem; margin-bottom: 4px;">Bespoke Seating</h4>
+                                    <p class="text-xs text-muted">Premium Italian leather suites.</p>
+                                </div>
+                            </div>
+                            <div class="flex hover-scale" style="gap: 12px; align-items: flex-start;">
+                                <div style="background: rgba(212,175,55,0.1); padding: 10px; border-radius: 4px;">
+                                    <i data-lucide="music" class="text-accent" style="width: 20px; height: 20px;"></i>
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 0.9rem; margin-bottom: 4px;">Acoustic Clarity</h4>
+                                    <p class="text-xs text-muted">Curated ambient soundscapes.</p>
+                                </div>
+                            </div>
+                            <div class="flex hover-scale" style="gap: 12px; align-items: flex-start;">
+                                <div style="background: rgba(212,175,55,0.1); padding: 10px; border-radius: 4px;">
+                                    <i data-lucide="wind" class="text-accent" style="width: 20px; height: 20px;"></i>
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 0.9rem; margin-bottom: 4px;">Climate Tech</h4>
+                                    <p class="text-xs text-muted">Advanced air purification systems.</p>
+                                </div>
+                            </div>
+                            <div class="flex hover-scale" style="gap: 12px; align-items: flex-start;">
+                                <div style="background: rgba(212,175,55,0.1); padding: 10px; border-radius: 4px;">
+                                    <i data-lucide="utensils" class="text-accent" style="width: 20px; height: 20px;"></i>
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 0.9rem; margin-bottom: 4px;">Gourmet Menu</h4>
+                                    <p class="text-xs text-muted">Exquisite pairings for members.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="services.html" class="reveal" style="display: inline-flex; align-items: center; gap: 8px; margin-top: var(--s-10); font-weight: 700; font-size: 0.8rem; letter-spacing: 2px; color: var(--secondary); text-transform: uppercase; border-bottom: 2px solid var(--secondary); padding-bottom: 4px;">
+                            EXPLORE THE AMENITIES <i data-lucide="arrow-right" style="width: 14px;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: THE TECHNOLOGY -->
+        <section class="section" style="background-color: var(--primary); color: white;">
+            <div class="container">
+                <div class="grid grid-2" style="gap: var(--s-12); align-items: center;">
+                    <div>
+                        <h2 style="color: white; font-size: var(--h2-v2);">Precision <br><span style="color: var(--secondary);">In Every Frame</span></h2>
+                        <p style="color: rgba(255,255,255,0.6); margin-top: var(--s-6); line-height: 1.8;">Our simulators utilize industrial-grade sensors to capture over 40 data points on every swing. Accuracy isn't just a claim—it's our standard.</p>
+                    </div>
+                    <div class="grid grid-2" style="gap: var(--s-4);">
+                        <div class="glass-detail">
+                            <h4 style="color: var(--secondary); font-size: 0.75rem; letter-spacing: 2px;">CAMERA RATE</h4>
+                            <h3 style="color: white; margin: 8px 0;">10,000 FPS</h3>
+                            <p class="text-xs" style="color: rgba(255,255,255,0.4);">Zero-latency frame capture.</p>
+                        </div>
+                        <div class="glass-detail" style="border-color: var(--secondary);">
+                            <h4 style="color: var(--secondary); font-size: 0.75rem; letter-spacing: 2px;">ACCURACY</h4>
+                            <h3 style="color: white; margin: 8px 0;">99.9%</h3>
+                            <p class="text-xs" style="color: rgba(255,255,255,0.4);">PGA Tournament standard.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: THE LIBRARY -->
+        <section class="section reveal">
+            <div class="container text-center">
+                <span class="text-accent reveal" style="letter-spacing: 3px; font-weight: 700;">WORLD STAGE</span>
+                <h2 class="reveal" style="font-size: var(--h2-v2); margin: var(--s-2) 0 var(--s-12);">100+ Iconic <span class="text-accent">Fairways</span></h2>
+                <div class="grid grid-3 reveal diamond-grid-tablet" style="gap: var(--s-6);">
+                    <div class="hover-scale" style="height: 400px; background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.8) 100%), url('../assets/images/home-v2/ST. ANDREWS.jpg') center/cover no-repeat; display: flex; align-items: flex-end; padding: var(--s-6); position: relative; border-radius: 4px;">
+                         <span class="badge badge-glass" style="position: absolute; top: var(--s-4); left: var(--s-4);">SCOTLAND</span>
+                         <h4 style="margin: 0; color: white;">ST. ANDREWS</h4>
+                    </div>
+                    <div class="hover-scale" style="height: 400px; background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.8) 100%), url('../assets/images/home-v2/PEBBLE BEACH.jpg') center/cover no-repeat; display: flex; align-items: flex-end; padding: var(--s-6); position: relative; margin-top: 40px; border-radius: 4px;">
+                         <span class="badge badge-glass" style="position: absolute; top: var(--s-4); left: var(--s-4);">USA</span>
+                         <h4 style="margin: 0; color: white;">PEBBLE BEACH</h4>
+                    </div>
+                    <div class="hover-scale" style="height: 400px; background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.8) 100%), url('../assets/images/home-v2/VALDERRAMA.jpg') center/cover no-repeat; display: flex; align-items: flex-end; padding: var(--s-6); position: relative; border-radius: 4px;">
+                         <span class="badge badge-glass" style="position: absolute; top: var(--s-4); left: var(--s-4);">SPAIN</span>
+                         <h4 style="margin: 0; color: white;">VALDERRAMA</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: AMENITIES -->
+        <section class="section" style="background-color: var(--bg-alt);">
+            <div class="container">
+                <div class="reveal" style="text-align: center; margin-bottom: var(--s-12);">
+                    <div style="display: inline-flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                        <span style="width: 20px; height: 1px; background: var(--secondary);"></span>
+                        <span class="text-label">Curated Comforts</span>
+                        <span style="width: 20px; height: 1px; background: var(--secondary);"></span>
+                    </div>
+                    <h2 class="reveal" style="font-size: var(--h2-v2); margin-bottom: var(--s-4);">Beyond the <span class="text-accent">Baseline</span></h2>
+                    <p class="text-muted reveal" style="max-width: 650px; margin: 0 auto; line-height: 1.8; font-size: 1.1rem;">
+                        Discover a world where every detail is meticulously tailored to elevate your experience. Our lounge isn't just about the game—it's about the lifestyle that surrounds it.
+                    </p>
+                </div>
+
+                <!-- Amenities Grid -->
+                <div class="grid grid-3 diamond-grid-tablet" style="gap: var(--s-10);">
+                    <!-- Card 1 -->
+                    <div class="card-v2 hover-scale reveal" style="padding: 0; overflow: hidden; border: 1px solid var(--border); background: var(--bg-card); display: flex; flex-direction: column;">
+                        <div style="width: 100%; height: 260px; background: url('../assets/images/home-v2/GASTRONOMY.jpg') center/cover no-repeat; position: relative;">
+                            <div style="position: absolute; bottom: 20px; left: 20px; background: var(--primary); padding: 12px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                                <i data-lucide="wine" style="width: 24px; height: 24px; color: var(--secondary);"></i>
+                            </div>
+                        </div>
+                        <div class="v2-card-content" style="padding: var(--s-8) var(--s-8) var(--s-10);">
+                            <span class="badge badge-outline" style="margin-bottom: var(--s-4);">GASTRONOMY</span>
+                            <h3 style="margin: 12px 0 var(--s-4); font-size: 1.5rem; color: var(--text-main);">The 19th Hole</h3>
+                            <p class="text-muted" style="font-size: 0.95rem; line-height: 1.7; margin-bottom: var(--s-8);">Full-service menu featuring rare single malts, craft spirits, and gourmet lounge bites tailored for golfers.</p>
+                            <a href="services.html" style="font-weight: 800; font-size: 0.75rem; color: var(--secondary); letter-spacing: 2px; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px;">
+                                DISCOVER MENU <i data-lucide="arrow-right" style="width: 14px;"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="card-v2" style="padding: 0; overflow: hidden; border: 1px solid var(--border); background: var(--bg-card); display: flex; flex-direction: column;">
+                        <div style="width: 100%; height: 260px; background: url('../assets/images/home-v2/Member Vault.jpg') center/cover no-repeat; position: relative;">
+                            <div style="position: absolute; bottom: 20px; left: 20px; background: var(--primary); padding: 12px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                                <i data-lucide="shield-check" style="width: 24px; height: 24px; color: var(--secondary);"></i>
+                            </div>
+                        </div>
+                        <div class="v2-card-content" style="padding: var(--s-8) var(--s-8) var(--s-10);">
+                            <span class="badge badge-outline" style="margin-bottom: var(--s-4);">SECURITY & CARE</span>
+                            <h3 style="margin: 12px 0 var(--s-4); font-size: 1.5rem; color: var(--text-main);">Member Vault</h3>
+                            <p class="text-muted" style="font-size: 0.95rem; line-height: 1.7; margin-bottom: var(--s-8);">Climate-controlled bag storage with professional club cleaning and master-technician tuning services.</p>
+                            <a href="services.html" style="font-weight: 800; font-size: 0.75rem; color: var(--secondary); letter-spacing: 2px; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px;">
+                                CLUB SERVICES <i data-lucide="arrow-right" style="width: 14px;"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="card-v2" style="padding: 0; overflow: hidden; border: 1px solid var(--border); background: var(--bg-card); display: flex; flex-direction: column;">
+                        <div style="width: 100%; height: 260px; background: url('../assets/images/home-v2/Platinum Valet.jpg') center/cover no-repeat; position: relative;">
+                            <div style="position: absolute; bottom: 20px; left: 20px; background: var(--primary); padding: 12px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                                <i data-lucide="zap" style="width: 24px; height: 24px; color: var(--secondary);"></i>
+                            </div>
+                        </div>
+                        <div class="v2-card-content" style="padding: var(--s-8) var(--s-8) var(--s-10);">
+                            <span class="badge badge-outline" style="margin-bottom: var(--s-4);">LOGISTICS</span>
+                            <h3 style="margin: 12px 0 var(--s-4); font-size: 1.5rem; color: var(--text-main);">Platinum Valet</h3>
+                            <p class="text-muted" style="font-size: 0.95rem; line-height: 1.7; margin-bottom: var(--s-8);">Seamless arrival and departure with dedicated white-glove equipment handling and VIP parking access.</p>
+                            <a href="services.html" style="font-weight: 800; font-size: 0.75rem; color: var(--secondary); letter-spacing: 2px; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px;">
+                                VIEW ACCESS <i data-lucide="arrow-right" style="width: 14px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: NETWORKING -->
+        <section class="section">
+            <div class="container">
+                <div class="grid grid-2" style="gap: var(--s-16); align-items: center;">
+                    <!-- IMAGE ANCHOR -->
+                    <div class="reveal-left" style="background: rgba(0,0,0,0.05); height: 600px; border: 1px solid var(--border); border-radius: 4px; position: relative; overflow: hidden;">
+                        <div class="hover-scale" style="position: absolute; inset: 20px; background: url('../assets/images/home-v2/Community.jpg') center/cover no-repeat; border-radius: 2px;"></div>
+                        <div class="reveal" style="position: absolute; top: 40px; right: 40px; width: 150px; background: rgba(212,175,55,0.1); backdrop-filter: blur(20px); border: 1px solid var(--secondary); padding: 20px; color: white;">
+                            <p class="text-label" style="margin-bottom: 8px;">STATUS</p>
+                            <p class="text-label" style="color: white;">PRIVATE LOUNGE ACTIVE</p>
+                        </div>
+                        <span class="v2-num" style="bottom: -20px; right: -20px; font-size: 10rem; opacity: 0.05;">05</span>
+                    </div>
+
+                    <!-- CONTENT -->
+                    <div class="reveal-right" style="max-width: 550px;">
+                        <div class="reveal" style="display: flex; align-items: center; gap: 12px; margin-bottom: var(--s-2);">
+                            <div style="width: 30px; height: 1px; background: var(--secondary);"></div>
+                            <span class="text-label">Community</span>
+                        </div>
+                        <h2 class="reveal" style="font-size: var(--h2-v2); line-height: 1.1; margin-bottom: var(--s-4);">Elite <span class="text-accent">Networking</span></h2>
+                        <p class="text-muted reveal" style="margin-bottom: var(--s-6); line-height: 1.7; font-size: 1.05rem;">
+                            Golfic is more than a simulator—it's the region's premier hub for professional community. Participate in exclusive league nights, corporate socials, and high-stakes networking events in a refined atmosphere.
+                        </p>
+                        
+                        <div class="grid grid-2 networking-stats">
+                            <div class="hover-scale" style="flex: 1; padding: var(--s-6); border: 1px solid var(--border); background: var(--bg-alt); position: relative;">
+                                <div style="position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--secondary);"></div>
+                                <h3 style="margin-bottom: 2px; font-size: 1.75rem; font-weight: 800;">12+</h3>
+                                <p class="text-xs text-muted" style="letter-spacing: 1.5px;">ACTIVE LEAGUES</p>
+                            </div>
+                            <div class="hover-scale" style="flex: 1; padding: var(--s-6); border: 1px solid var(--border); background: var(--bg-alt); position: relative;">
+                                <div style="position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--secondary);"></div>
+                                <h3 style="margin-bottom: 2px; font-size: 1.75rem; font-weight: 800;">500+</h3>
+                                <p class="text-xs text-muted" style="letter-spacing: 1.5px;">ANNUAL EVENTS</p>
+                            </div>
+                        </div>
+                        
+                        <a href="contact.html" class="btn btn-gold reveal" style="margin-top: var(--s-6); padding: 16px 36px; border-radius: 0; font-size: 0.85rem;">JOIN THE CIRCLE</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: THE FOUNDER'S CLUB (SS REBUILD) -->
+        <section class="section">
+            <div class="container">
+                <div class="v2-founder-banner" style="background-color: #6a76b9; border-radius: 40px; position: relative; min-height: 420px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); align-items: center; gap: var(--s-8); overflow: hidden;">
+                    
+                    <!-- LEFT CARD: THE FORM -->
+                    <div class="v2-founder-form" style="background: #e1e4f4; border-radius: 32px; box-shadow: 0 40px 100px rgba(0,0,0,0.15); max-width: 550px; position: relative; z-index: 2;">
+                        <h2 style="color: #1a1a1a; font-size: 2.1rem; font-weight: 800; line-height: 1.1; margin-bottom: 8px; font-family: var(--font-heading);">
+                            Join the Founder's Club
+                        </h2>
+                        <p style="color: #4a4a4a; font-size: 1.05rem; margin-bottom: var(--s-6); line-height: 1.4;">
+                            Apply for priority access and exclusive partner courses.
+                        </p>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <div style="position: relative;">
+                                <i data-lucide="mail" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); width: 20px; color: #6a76b9;"></i>
+                                <input type="email" placeholder="Your Email" style="width: 100%; height: 60px; border-radius: 32px; border: none; padding: 0 20px 0 60px; font-size: 1rem; font-weight: 600; outline: none; background: white; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
+                            </div>
+                            <button style="width: 100%; height: 60px; border-radius: 12px; background: #4a57a8; color: white; border: none; font-weight: 800; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: 0.3s; box-shadow: 0 15px 30px rgba(74,87,168,0.3);">
+                                SUBMIT APPLICATION
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT SIDE: THE ILLUSTRATION -->
+                    <div style="position: relative; display: flex; justify-content: center; align-items: center; z-index: 1;">
+                        <div style="position: relative; width: 100%; height: 100%; min-height: 350px;">
+                             <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 350px; height: 350px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);"></div>
+                             <i data-lucide="key" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); width: 220px; height: 220px; color: white; opacity: 0.9; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.2));"></i>
+                             <!-- Action Decorators -->
+                             <i data-lucide="zap" style="position: absolute; top: 20%; right: 10%; width: 50px; height: 50px; color: white; opacity: 0.6;"></i>
+                             <i data-lucide="zap" style="position: absolute; top: 40%; right: 0%; width: 30px; height: 30px; color: white; opacity: 0.4;"></i>
+                             <i data-lucide="zap" style="position: absolute; bottom: 20%; left: 10%; width: 40px; height: 40px; color: white; opacity: 0.5;"></i>
+                        </div>
+                    </div>
+
+                    <!-- Decorative Background elements -->
+                    <div style="position: absolute; bottom: -50px; right: -50px; width: 200px; height: 200px; background: rgba(255,255,255,0.1); border-radius: 50%;"></div>
+                    <div style="position: absolute; top: -30px; left: 100px; width: 100px; height: 100px; background: rgba(255,255,255,0.1); border-radius: 50%;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: COACHING -->
+        <section class="section">
+            <div class="container text-center">
+                <span class="text-label">EXPERT GUIDANCE</span>
+                 <h2 style="font-size: var(--h2-v2); margin: var(--s-2) 0 var(--s-12);">Master the <span class="text-accent">Game</span></h2>
+                 <div class="grid grid-3 diamond-grid-tablet" style="gap: var(--s-8);">
+                    <div class="text-left">
+                        <div style="height: 400px; background: url('../assets/images/home-v2/Marcus Vane.jpg') center 20% / cover no-repeat; border-radius: 4px; margin-bottom: var(--s-6);"></div>
+                        <h4 style="margin-bottom: 4px;">Marcus Vane</h4>
+                        <p class="text-xs text-accent" style="font-weight: 800;">HEAD PGA INSTRUCTOR</p>
+                    </div>
+                    <div class="text-left">
+                        <div style="height: 400px; background: url('../assets/images/home-v2/Sarah Jenkins.jpg') center 10% / cover no-repeat; border-radius: 4px; margin-bottom: var(--s-6);"></div>
+                        <h4 style="margin-bottom: 4px;">Sarah Jenkins</h4>
+                        <p class="text-xs text-accent" style="font-weight: 800;">BIOMETRICS COACH</p>
+                    </div>
+                    <div class="text-left">
+                        <div style="height: 400px; background: url('../assets/images/home-v2/David Cho.jpg') center 20% / cover no-repeat; border-radius: 4px; margin-bottom: var(--s-6);"></div>
+                        <h4 style="margin-bottom: 4px;">David Cho</h4>
+                        <p class="text-xs text-accent" style="font-weight: 800;">LEAGUE DIRECTOR</p>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- SECTION 8: THE VANGUARD VERDICT (TESTIMONIALS) -->
+        <section class="section reveal" style="background-color: var(--bg-alt);">
+            <div class="container">
+                <div class="reveal" style="text-align: center; margin-bottom: var(--s-12);">
+                    <div style="display: inline-flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                        <span style="width: 20px; height: 1px; background: var(--secondary);"></span>
+                        <span class="text-label">The Verdict</span>
+                        <span style="width: 20px; height: 1px; background: var(--secondary);"></span>
+                    </div>
+                    <h2 style="font-size: var(--h2-v2); margin-bottom: var(--s-4);">Voice of the <span class="text-accent">Vanguard</span></h2>
+                </div>
+                
+                <div class="grid grid-2" style="gap: var(--s-6);">
+                    <div class="card-v2 hover-scale" style="position: relative; border-left: 4px solid var(--secondary);">
+                        <i data-lucide="quote" style="position: absolute; top: 20px; right: 20px; color: rgba(212,175,55,0.1); width: 60px; height: 60px;"></i>
+                        <p style="font-style: italic; font-size: 1.1rem; line-height: 1.8; margin-bottom: var(--s-6);">"The atmospheric detail at Golfic is unparalleled. It's not just a simulator; it's a sensory sanctuary for anyone serious about their swing."</p>
+                        <h4 style="margin-bottom: 2px;">Elias Thorne</h4>
+                        <p class="text-xs text-accent" style="font-weight: 800;">PLATINUM FOUNDER</p>
+                    </div>
+                    <div class="card-v2 hover-scale" style="position: relative; border-left: 4px solid var(--secondary);">
+                        <i data-lucide="quote" style="position: absolute; top: 20px; right: 20px; color: rgba(212,175,55,0.1); width: 60px; height: 60px;"></i>
+                        <p style="font-style: italic; font-size: 1.1rem; line-height: 1.8; margin-bottom: var(--s-6);">"Finally, a lounge that understands the intersection of high-fidelity technology and luxury hospitality. The Trackman precision is spot on."</p>
+                        <h4 style="margin-bottom: 2px;">Elena Rossi</h4>
+                        <p class="text-xs text-accent" style="font-weight: 800;">EXECUTIVE MEMBER</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 9: THE INTELLIGENCE BRIEF (FAQ) -->
+        <section class="section reveal">
+            <div class="container">
+                <div class="grid grid-2" style="gap: var(--s-12); align-items: flex-start;">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: var(--s-2);">
+                            <div style="width: 30px; height: 1px; background: var(--secondary);"></div>
+                            <span class="text-label">Intel</span>
+                        </div>
+                        <h2 style="font-size: var(--h2-v2); line-height: 1.1;">The <br><span class="text-accent">Intelligence Brief</span></h2>
+                        <p class="text-muted" style="margin-top: var(--s-6); line-height: 1.8;">Technical specifications and protocol details for the Golfic experience.</p>
+                        <a href="contact.html" class="btn btn-gold" style="margin-top: var(--s-8);">FULL DOCUMENTATION</a>
+                    </div>
+                    
+                    <div class="flex" style="flex-direction: column; gap: var(--s-4);">
+                        <div class="glass-detail hover-scale" style="border-radius: 4px;">
+                            <h4 style="color: var(--secondary); margin-bottom: 8px; font-size: 0.8rem; letter-spacing: 2px;">Q: SENSOR CALIBRATION?</h4>
+                            <p class="text-sm" style="color: rgba(255,255,255,0.7);">Our Trackman 4 units undergo daily automated calibration to maintain 99.9% accuracy.</p>
+                        </div>
+                        <div class="glass-detail hover-scale" style="border-radius: 4px;">
+                            <h4 style="color: var(--secondary); margin-bottom: 8px; font-size: 0.8rem; letter-spacing: 2px;">Q: DATA EXPORT?</h4>
+                            <p class="text-sm" style="color: rgba(255,255,255,0.7);">All session data is instantly synced to the Golfic Cloud and available for export via the member app.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 10: FINAL CTA (ENHANCED DETAIL) -->
+        <section class="section" style="padding-top: 50px; padding-bottom: 100px;">
+            <div class="container">
+                <div class="v2-final-cta" style="background: linear-gradient(135deg, #0B3D2E 0%, #12523E 100%); border-radius: 40px; text-align: center; color: white; position: relative; overflow: hidden; box-shadow: 0 50px 120px rgba(0,0,0,0.3);">
+                    
+                    <!-- 1. Geometric Grid Overlay -->
+                    <div style="position: absolute; inset: 0; opacity: 0.05; background-image: radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px); background-size: 30px 30px; pointer-events: none;"></div>
+                    
+                    <!-- 2. Decorative Glass Glows -->
+                    <div style="position: absolute; top: -150px; left: -150px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);"></div>
+                    <div style="position: absolute; bottom: -100px; right: -50px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(74,222,128,0.05) 0%, transparent 70%);"></div>
+
+                    <!-- 3. Floating Detail Badges (Desktop Only Vibe) -->
+                    <div class="hide-mobile" style="position: absolute; top: 40px; left: 40px; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 100px; display: flex; align-items: center; gap: 8px;">
+                        <div style="width: 6px; height: 6px; background: #4ade80; border-radius: 50%;"></div>
+                        <span style="font-size: 0.65rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;">System Online</span>
+                    </div>
+
+                    <div class="hide-mobile" style="position: absolute; bottom: 40px; right: 40px; display: flex; align-items: center; gap: 15px; opacity: 0.6;">
+                        <i data-lucide="shield-check" style="width: 18px; color: var(--secondary);"></i>
+                        <span style="font-size: 0.6rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">AES-256 Encrypted Booking</span>
+                    </div>
+
+                    <div style="position: relative; z-index: 2;">
+                        <div style="display: inline-flex; align-items: center; gap: 12px; margin-bottom: var(--s-2);">
+                            <span style="width: 20px; height: 1px; background: rgba(255,255,255,0.3);"></span>
+                            <span class="text-label">The Final Call</span>
+                            <span style="width: 20px; height: 1px; background: rgba(255,255,255,0.3);"></span>
+                        </div>
+                        <h2 style="color: white !important; line-height: 1.1; margin-bottom: var(--s-2); font-weight: 900; letter-spacing: -2px; text-transform: uppercase;">
+                            Master Your <br><span style="color: var(--secondary); -webkit-text-stroke: 1px var(--secondary); -webkit-text-fill-color: transparent;">Peak Potential</span>
+                        </h2>
+                        <p style="color: rgba(255,255,255,0.8); font-size: var(--fs-body-lg); max-width: 850px; margin: 0 auto var(--s-6); line-height: 1.5; font-weight: 300;">
+                            Step into the future of the game. Limited founding memberships still available for our Q3 expansion phase. Don't just play—master the frame.
+                        </p>
+                        
+                        <!-- Floating Benefit Badges -->
+                        <div style="display: flex; justify-content: center; gap: var(--s-6); margin-bottom: var(--s-8); flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 8px; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;">
+                                <i data-lucide="award" style="width: 14px; color: var(--secondary);"></i> PGA CERTIFIED
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;">
+                                <i data-lucide="clock" style="width: 14px; color: var(--secondary);"></i> 24/7 PRIORITY
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;">
+                                <i data-lucide="globe" style="width: 14px; color: var(--secondary);"></i> GLOBAL ACCESS
+                            </div>
+                        </div>
+
+                        <div style="display: flex; justify-content: center; gap: var(--s-4); align-items: center; flex-wrap: wrap;">
+                            <a href="booking.html" class="btn" style="background: white; color: #0B3D2E; padding: 20px 48px; border-radius: 4px; font-weight: 900; font-size: 0.9rem; border: none; box-shadow: 0 20px 40px rgba(0,0,0,0.3); letter-spacing: 2px;">
+                                SECURE YOUR BAY
+                            </a>
+                            <a href="coming-soon.html" class="btn" style="border: 1px solid rgba(255,255,255,0.2); color: white; padding: 20px 48px; border-radius: 4px; font-weight: 800; font-size: 0.9rem; backdrop-filter: blur(10px); letter-spacing: 2px;">
+                                BEYOND THE LOUNGE
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Global Footer Hook -->
+    <div id="footer-global"></div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

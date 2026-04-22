@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | Frequency Lost</title>
+    
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        :root {
+            --mesh-green: #0B3D2E;
+            --mesh-gold: rgba(212, 175, 55, 0.15);
+            --mesh-white: #FFFFFF;
+            --accent-gold: var(--secondary);
+        }
+
+        body {
+            margin: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: var(--font-body);
+            color: var(--text-main);
+            background: var(--bg-alt);
+        }
+
+        /* ETHEREAL MESH BACKGROUND */
+        .mesh-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(at 0% 0%, var(--mesh-green) 0px, transparent 50%),
+                        radial-gradient(at 100% 0%, var(--mesh-gold) 0px, transparent 50%),
+                        radial-gradient(at 100% 100%, var(--mesh-green) 0px, transparent 50%),
+                        radial-gradient(at 0% 100%, var(--mesh-white) 0px, transparent 50%);
+            filter: blur(80px);
+            opacity: 0.4;
+        }
+
+        body.dark-layout .mesh-bg {
+            background: radial-gradient(at 0% 0%, #051a14 0px, transparent 50%),
+                        radial-gradient(at 100% 0%, rgba(212, 175, 55, 0.05) 0px, transparent 50%),
+                        radial-gradient(at 100% 100%, #051a14 0px, transparent 50%),
+                        radial-gradient(at 0% 100%, #111 0px, transparent 50%);
+            opacity: 0.8;
+        }
+
+        .portal-nav {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            right: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .back-link:hover { opacity: 1; transform: translateX(-4px); }
+
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        body.dark-layout .logo-box {
+            color: var(--secondary);
+        }
+
+        .logo-box i { color: inherit; width: 28px; height: 28px; }
+        .logo-box span { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; letter-spacing: 2px; color: inherit; }
+
+        .error-code {
+            font-family: var(--font-heading);
+            font-size: clamp(6rem, 15vw, 10rem);
+            font-weight: 900;
+            line-height: 0.8;
+            color: var(--accent-gold);
+            letter-spacing: -6px;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 20px 40px rgba(212, 175, 55, 0.15));
+            transition: var(--transition);
+        }
+
+        body.dark-layout .error-code {
+            color: #FFFFFF;
+        }
+
+        .error-title {
+            font-family: var(--font-heading);
+            font-size: 3.25rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        body.dark-layout .error-title {
+            color: #FFFFFF;
+        }
+
+        .text-accent {
+            color: var(--secondary);
+        }
+
+        .error-desc {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .btn-neural {
+            background: var(--accent-gold);
+            color: #000;
+            border: none;
+            padding: 18px 45px;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+            text-decoration: none;
+        }
+
+        .btn-neural:hover { transform: scale(1.05); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3); }
+
+        /* [LOCKED] 404 RESPONSIVENESS (320px - 1440px) */
+        @media (max-width: 1024px) {
+            .error-title { font-size: 2.75rem; }
+        }
+
+        @media (max-width: 768px) {
+            .portal-nav { top: 20px; left: 20px; right: 20px; }
+            .error-title { font-size: 2.25rem; }
+            .error-desc { font-size: 1rem; padding: 0 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .error-title { font-size: 1.75rem; }
+            .error-code { font-size: 6rem; letter-spacing: -3px; }
+            .btn-neural { width: 100%; max-width: 280px; }
+        }
+    </style>
+</head>
+<body class="loading">
+
+    <div class="mesh-bg"></div>
+
+    <nav class="portal-nav">
+        <a href="index.html" class="back-link">
+            <i data-lucide="arrow-left"></i> Home
+        </a>
+        <button id="theme-toggle" class="icon-btn theme-toggle" style="background: transparent;">
+            <i data-lucide="moon"></i>
+        </button>
+    </nav>
+
+    <main class="error-container fade-in">
+        <div class="logo-box reveal">
+            <i data-lucide="target"></i>
+            <span>GOLFIC</span>
+        </div>
+
+        <div class="error-code reveal">404</div>
+        
+        <h2 class="error-title reveal">Frequency <span class="text-accent">De-synchronized</span></h2>
+        <p class="error-desc reveal">
+            The neural pathway you requested does not exist or has been shifted 
+            into an inaccessible frequency. Return to the origin for re-calibration.
+        </p>
+
+        <a href="index.html" class="btn-neural reveal">Return to Origin</a>
+    </main>
+
+    <!-- Scripts -->
+    <script src="../assets/js/main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
