@@ -19,13 +19,11 @@
         }
 
         .hero-services {
-            min-height: 80vh;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,1)), var(--primary);
-            display: flex;
-            align-items: center;
-            padding: 160px 0 80px;
-            position: relative;
-            overflow: hidden;
+            background-color: var(--primary);
+        }
+
+        .hero-services::before {
+            background: rgba(0, 0, 0, 0.3) !important;
         }
 
         .hero-services::after {
@@ -64,7 +62,6 @@
 
         /* [LOCKED] SERVICES TABLET RESPONSIVENESS (768px - 1024px) */
         @media (max-width: 1024px) {
-            .hero-services { padding: 120px 0 60px; min-height: auto; }
             .hero-services h1 { font-size: 3rem !important; }
             .circuit-module { padding: var(--s-6) !important; }
             .circuit-card { padding: var(--s-6) var(--s-3) !important; }
@@ -107,26 +104,28 @@
 
     <main>
         <!-- SECTION 1: HERO -->
-        <section class="hero-services">
-            <div class="container">
-                <div class="grid grid-2" style="gap: var(--s-12); align-items: center;">
-                    <div class="reveal-left" style="text-align: left;">
-                        <div class="badge badge-outline reveal" style="margin-bottom: var(--s-6);">
-                            THE SUITE OF MASTERY
+        <section class="hero hero-services">
+            <div class="hero-content">
+                <div class="container">
+                    <div class="grid grid-2" style="gap: var(--s-12); align-items: center;">
+                        <div class="reveal-left" style="text-align: left;">
+                            <div class="badge badge-outline reveal" style="margin-bottom: var(--s-1);">
+                                THE SUITE OF MASTERY
+                            </div>
+                            <h1 class="reveal" style="color: white; font-size: var(--fs-h1); line-height: 1.1; margin-bottom: var(--s-6); font-weight: 900; letter-spacing: -2px;">
+                                Uncompromising Performance Suites
+                            </h1>
+                            <p class="reveal" style="color: rgba(255,255,255,0.8); font-size: var(--fs-body-lg); max-width: 600px; line-height: 1.8; font-weight: 300; margin-bottom: var(--s-6);">
+                                From radical diagnostic precision to curated West Coast hospitality, our services are designed for the player who demands the absolute apex of the game.
+                            </p>
+                            <div class="reveal btn-container" style="display: flex; gap: var(--s-4);">
+                                 <a href="booking.html" class="btn btn-gold" style="padding: 18px 40px; border-radius: 4px; font-weight: 900; letter-spacing: 1px;">BOOK A BAY</a>
+                                 <a href="#tech" class="btn" style="color: white; border: 1px solid rgba(255,255,255,0.2); padding: 18px 40px; border-radius: 4px; font-weight: 800; letter-spacing: 1px;">THE TECHNOLOGY</a>
+                            </div>
                         </div>
-                        <h1 class="reveal" style="color: white; font-size: var(--fs-h1); line-height: 1.1; margin-bottom: var(--s-6); font-weight: 900; letter-spacing: -2px;">
-                            Uncompromising Performance Suites
-                        </h1>
-                        <p class="reveal" style="color: rgba(255,255,255,0.8); font-size: var(--fs-body-lg); max-width: 600px; line-height: 1.8; font-weight: 300; margin-bottom: var(--s-10);">
-                            From radical diagnostic precision to curated West Coast hospitality, our services are designed for the player who demands the absolute apex of the game.
-                        </p>
-                        <div class="reveal btn-container" style="display: flex; gap: var(--s-4);">
-                             <a href="booking.html" class="btn btn-gold" style="padding: 18px 40px; border-radius: 4px; font-weight: 900; letter-spacing: 1px;">BOOK A BAY</a>
-                             <a href="#tech" class="btn" style="color: white; border: 1px solid rgba(255,255,255,0.2); padding: 18px 40px; border-radius: 4px; font-weight: 800; letter-spacing: 1px;">THE TECHNOLOGY</a>
+                        <div class="hero-img-stack" style="height: 350px; background: url('../assets/images/service/herosection-img.jpg') center center/cover no-repeat; background-color: #0B1215; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); position: relative; overflow: hidden;">
+                             <div style="position: absolute; inset: 0; background: linear-gradient(45deg, rgba(18,82,62,0.2), transparent);"></div>
                         </div>
-                    </div>
-                    <div class="hero-img-stack" style="height: 480px; background: linear-gradient(rgba(11,18,21,0.2), rgba(11,18,21,0.6)), url('../assets/images/service/herosection-img.jpg') center center/cover no-repeat; background-color: #0B1215; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); position: relative; overflow: hidden;">
-                         <div style="position: absolute; inset: 0; background: linear-gradient(45deg, rgba(18,82,62,0.4), transparent);"></div>
                     </div>
                 </div>
             </div>
@@ -350,7 +349,7 @@
                     <div style="position: absolute; inset: 0; background-image: linear-gradient(rgba(212,175,55,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.05) 1px, transparent 1px); background-size: 60px 60px; opacity: 0.2; pointer-events: none;"></div>
                     
                     <div style="position: relative; z-index: 2;">
-                        <div style="display: flex; gap: var(--s-3); flex-wrap: wrap; justify-content: center;">
+                        <div style="display: flex; gap: var(--s-3); flex-wrap: wrap; justify-content: center; margin-bottom: var(--s-10);">
                             <div class="badge badge-glass">99.9% ACCURACY</div>
                             <div class="badge badge-glass" style="color: white;">100+ GLOBAL COURSES</div>
                             <div class="badge badge-glass">PRIORITY ACCESS</div>

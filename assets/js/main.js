@@ -77,14 +77,14 @@ function injectGlobalComponents() {
                     </nav>
                     
                     <div class="header-actions">
-                        <button class="icon-btn rtl-toggle hide-mobile" aria-label="Toggle RTL">
-                            <i data-lucide="languages"></i>
-                        </button>
                         <button class="icon-btn theme-toggle hide-mobile" aria-label="Toggle Theme">
                             <i data-lucide="moon"></i>
                         </button>
+                        <button class="icon-btn rtl-toggle hide-mobile" aria-label="Toggle RTL">
+                            <span class="rtl-icon-text">RTL</span>
+                        </button>
                         <a href="${pagesPrefix}login.html" class="btn btn-secondary">Login</a>
-                        <a href="${pagesPrefix}booking.html" class="btn btn-primary">Book Now</a>
+
                         <button class="icon-btn hamburger" id="menu-open">
                             <i data-lucide="menu"></i>
                         </button>
@@ -114,12 +114,12 @@ function injectGlobalComponents() {
                         </div>
                         <div class="side-nav-toggle-strip">
                             <span style="font-size: 0.75rem; letter-spacing: 2px; font-weight: 800; color: var(--secondary);">RTL MODE</span>
-                            <button class="icon-btn rtl-toggle" style="background: rgba(255,255,255,0.1); width: 36px; height: 36px;"><i data-lucide="languages"></i></button>
+                            <button class="icon-btn rtl-toggle" style="background: rgba(255,255,255,0.1); width: auto; height: 36px; padding: 0 12px;"><span class="rtl-icon-text">RTL</span></button>
                         </div>
                     </div>
                     <div style="display: flex; flex-direction: column; gap: var(--s-3);">
                         <a href="${pagesPrefix}login.html" class="btn btn-secondary">Login</a>
-                        <a href="${pagesPrefix}booking.html" class="btn btn-primary">Book Now</a>
+                        <a href="${pagesPrefix}booking.html#suites" class="btn btn-primary">Book Now</a>
                     </div>
                 </div>
             </div>
@@ -236,6 +236,19 @@ function initTheme() {
     if (currentTheme === 'dark') {
         document.body.classList.add('dark-layout');
     }
+
+    // Sync icons on initial load
+    setTimeout(() => {
+        const allToggles = document.querySelectorAll('.theme-toggle i');
+        allToggles.forEach(icon => {
+            if (document.body.classList.contains('dark-layout')) {
+                icon.setAttribute('data-lucide', 'sun');
+            } else {
+                icon.setAttribute('data-lucide', 'moon');
+            }
+        });
+        if (window.lucide) window.lucide.createIcons();
+    }, 150);
     
     document.addEventListener('click', (e) => {
         if (e.target.closest('.theme-toggle')) {
@@ -428,14 +441,26 @@ function initHeaderScroll() {
     document.addEventListener('click', (e) => {
         if (e.target.closest('.rtl-toggle')) {
             const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
-            document.documentElement.setAttribute('dir', isRTL ? 'ltr' : 'rtl');
-            localStorage.setItem('rtl', isRTL ? 'ltr' : 'rtl');
+            const newDir = isRTL ? 'ltr' : 'rtl';
+            document.documentElement.setAttribute('dir', newDir);
+            localStorage.setItem('rtl', newDir);
+            
+            // Sync all RTL toggle texts
+            const allRtlTexts = document.querySelectorAll('.rtl-icon-text');
+            allRtlTexts.forEach(span => {
+                span.innerText = newDir === 'rtl' ? 'LTR' : 'RTL';
+            });
         }
     });
 
     const savedRTL = localStorage.getItem('rtl');
     if (savedRTL === 'rtl') {
         document.documentElement.setAttribute('dir', 'rtl');
+        // Initial sync
+        setTimeout(() => {
+            const allRtlTexts = document.querySelectorAll('.rtl-icon-text');
+            allRtlTexts.forEach(span => span.innerText = 'LTR');
+        }, 100);
     }
 }
 

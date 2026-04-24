@@ -110,6 +110,7 @@
 
         .v2-founder-form {
             padding: var(--s-8) var(--s-10);
+            margin-left: var(--s-8);
         }
 
         .v2-final-cta {
@@ -155,12 +156,24 @@
                 letter-spacing: 1px !important;
             }
             .v2-founder-banner {
-                padding: var(--s-6) var(--s-4);
+                padding: var(--s-6) var(--s-2);
                 border-radius: 20px;
+                min-height: auto !important;
             }
             .v2-founder-form {
-                padding: var(--s-6) var(--s-4);
+                padding: var(--s-6) var(--s-3);
                 border-radius: 20px;
+                margin: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            .v2-founder-form h2 {
+                font-size: 1.5rem !important;
+            }
+            .v2-founder-form button {
+                font-size: 0.8rem !important;
+                letter-spacing: 1px !important;
+                padding: 0 10px !important;
             }
             .v2-final-cta {
                 padding: var(--s-10) var(--s-4);
@@ -351,16 +364,16 @@
             <div class="container text-center">
                 <span class="text-accent reveal" style="letter-spacing: 3px; font-weight: 700;">WORLD STAGE</span>
                 <h2 class="reveal" style="font-size: var(--h2-v2); margin: var(--s-2) 0 var(--s-12);">100+ Iconic <span class="text-accent">Fairways</span></h2>
-                <div class="grid grid-3 reveal diamond-grid-tablet" style="gap: var(--s-6);">
-                    <div class="hover-scale" style="height: 400px; background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.8) 100%), url('assets/images/home-v2/ST. ANDREWS.jpg') center/cover no-repeat; display: flex; align-items: flex-end; padding: var(--s-6); position: relative; border-radius: 4px;">
+                <div class="grid grid-3 reveal diamond-grid-tablet" style="gap: var(--s-6); align-items: start;">
+                    <div class="hover-scale" style="height: 400px; background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.8) 100%), url('assets/images/home-v2/ST. ANDREWS.jpg') center/cover no-repeat; display: flex; align-items: flex-end; padding: var(--s-6); position: relative; border-radius: 4px; overflow: hidden;">
                          <span class="badge badge-glass" style="position: absolute; top: var(--s-4); left: var(--s-4);">SCOTLAND</span>
                          <h4 style="margin: 0; color: white;">ST. ANDREWS</h4>
                     </div>
-                    <div class="hover-scale" style="height: 400px; background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.8) 100%), url('assets/images/home-v2/PEBBLE BEACH.jpg') center/cover no-repeat; display: flex; align-items: flex-end; padding: var(--s-6); position: relative; margin-top: 40px; border-radius: 4px;">
+                    <div class="hover-scale" style="height: 400px; background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.8) 100%), url('assets/images/home-v2/PEBBLE BEACH.jpg') center/cover no-repeat; display: flex; align-items: flex-end; padding: var(--s-6); position: relative; border-radius: 4px; overflow: hidden;">
                          <span class="badge badge-glass" style="position: absolute; top: var(--s-4); left: var(--s-4);">USA</span>
                          <h4 style="margin: 0; color: white;">PEBBLE BEACH</h4>
                     </div>
-                    <div class="hover-scale" style="height: 400px; background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.8) 100%), url('assets/images/home-v2/VALDERRAMA.jpg') center/cover no-repeat; display: flex; align-items: flex-end; padding: var(--s-6); position: relative; border-radius: 4px;">
+                    <div class="hover-scale" style="height: 400px; background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.8) 100%), url('assets/images/home-v2/VALDERRAMA.jpg') center/cover no-repeat; display: flex; align-items: flex-end; padding: var(--s-6); position: relative; border-radius: 4px; overflow: hidden;">
                          <span class="badge badge-glass" style="position: absolute; top: var(--s-4); left: var(--s-4);">SPAIN</span>
                          <h4 style="margin: 0; color: white;">VALDERRAMA</h4>
                     </div>
@@ -392,7 +405,7 @@
                                 <i data-lucide="wine" style="width: 24px; height: 24px; color: var(--secondary);"></i>
                             </div>
                         </div>
-                        <div class="v2-card-content" style="padding: var(--s-8) var(--s-8) var(--s-10);">
+                        <div class="v2-card-content" style="padding: var(--s-4);">
                             <span class="badge badge-outline" style="margin-bottom: var(--s-4);">GASTRONOMY</span>
                             <h3 style="margin: 12px 0 var(--s-4); font-size: 1.5rem; color: var(--text-main);">The 19th Hole</h3>
                             <p class="text-muted" style="font-size: 0.95rem; line-height: 1.7; margin-bottom: var(--s-8);">Full-service menu featuring rare single malts, craft spirits, and gourmet lounge bites tailored for golfers.</p>
@@ -409,7 +422,7 @@
                                 <i data-lucide="shield-check" style="width: 24px; height: 24px; color: var(--secondary);"></i>
                             </div>
                         </div>
-                        <div class="v2-card-content" style="padding: var(--s-8) var(--s-8) var(--s-10);">
+                        <div class="v2-card-content" style="padding: var(--s-4);">
                             <span class="badge badge-outline" style="margin-bottom: var(--s-4);">SECURITY & CARE</span>
                             <h3 style="margin: 12px 0 var(--s-4); font-size: 1.5rem; color: var(--text-main);">Member Vault</h3>
                             <p class="text-muted" style="font-size: 0.95rem; line-height: 1.7; margin-bottom: var(--s-8);">Climate-controlled bag storage with professional club cleaning and master-technician tuning services.</p>
@@ -426,7 +439,7 @@
                                 <i data-lucide="zap" style="width: 24px; height: 24px; color: var(--secondary);"></i>
                             </div>
                         </div>
-                        <div class="v2-card-content" style="padding: var(--s-8) var(--s-8) var(--s-10);">
+                        <div class="v2-card-content" style="padding: var(--s-4);">
                             <span class="badge badge-outline" style="margin-bottom: var(--s-4);">LOGISTICS</span>
                             <h3 style="margin: 12px 0 var(--s-4); font-size: 1.5rem; color: var(--text-main);">Platinum Valet</h3>
                             <p class="text-muted" style="font-size: 0.95rem; line-height: 1.7; margin-bottom: var(--s-8);">Seamless arrival and departure with dedicated white-glove equipment handling and VIP parking access.</p>
@@ -483,26 +496,26 @@
             </div>
         </section>
 
-        <!-- SECTION 6: THE FOUNDER'S CLUB (SS REBUILD) -->
+        <!-- SECTION 6: THE FOUNDER'S CLUB (RE-THEMED) -->
         <section class="section">
             <div class="container">
-                <div class="v2-founder-banner" style="background-color: #6a76b9; border-radius: 40px; position: relative; min-height: 420px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); align-items: center; gap: var(--s-8); overflow: hidden;">
+                <div class="v2-founder-banner" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border-radius: 40px; position: relative; min-height: 420px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); align-items: center; gap: var(--s-8); overflow: hidden; border: 1px solid rgba(212,175,55,0.2);">
                     
                     <!-- LEFT CARD: THE FORM -->
-                    <div class="v2-founder-form" style="background: #e1e4f4; border-radius: 32px; box-shadow: 0 40px 100px rgba(0,0,0,0.15); max-width: 550px; position: relative; z-index: 2;">
-                        <h2 style="color: #1a1a1a; font-size: 2.1rem; font-weight: 800; line-height: 1.1; margin-bottom: 8px; font-family: var(--font-heading);">
+                    <div class="v2-founder-form" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 32px; box-shadow: 0 40px 100px rgba(0,0,0,0.3); max-width: 550px; position: relative; z-index: 2;">
+                        <h2 style="color: var(--text-main); font-size: 2.1rem; font-weight: 800; line-height: 1.1; margin-bottom: 8px; font-family: var(--font-heading);">
                             Join the Founder's Club
                         </h2>
-                        <p style="color: #4a4a4a; font-size: 1.05rem; margin-bottom: var(--s-6); line-height: 1.4;">
+                        <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: var(--s-6); line-height: 1.4;">
                             Apply for priority access and exclusive partner courses.
                         </p>
                         
                         <div style="display: flex; flex-direction: column; gap: 12px;">
                             <div style="position: relative;">
-                                <i data-lucide="mail" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); width: 20px; color: #6a76b9;"></i>
-                                <input type="email" placeholder="Your Email" style="width: 100%; height: 60px; border-radius: 32px; border: none; padding: 0 20px 0 60px; font-size: 1rem; font-weight: 600; outline: none; background: white; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
+                                <i data-lucide="mail" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); width: 20px; color: var(--secondary);"></i>
+                                <input type="email" placeholder="Your Email" style="width: 100%; height: 60px; border-radius: 32px; border: 1px solid var(--border); padding: 0 20px 0 60px; font-size: 1rem; font-weight: 600; outline: none; background: var(--bg-alt); color: var(--text-main);">
                             </div>
-                            <button style="width: 100%; height: 60px; border-radius: 12px; background: #4a57a8; color: white; border: none; font-weight: 800; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: 0.3s; box-shadow: 0 15px 30px rgba(74,87,168,0.3);">
+                            <button class="btn btn-gold" style="width: 100%; height: 60px; border-radius: 12px; font-weight: 800; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border: none; box-shadow: 0 15px 30px rgba(212,175,55,0.2);">
                                 SUBMIT APPLICATION
                             </button>
                         </div>
@@ -596,13 +609,13 @@
                     </div>
                     
                     <div class="flex" style="flex-direction: column; gap: var(--s-4);">
-                        <div class="glass-detail hover-scale" style="border-radius: 4px;">
+                        <div class="glass-detail hover-scale" style="border-radius: 4px; background: rgba(var(--text-rgb), 0.03); border: 1px solid var(--border);">
                             <h4 style="color: var(--secondary); margin-bottom: 8px; font-size: 0.8rem; letter-spacing: 2px;">Q: SENSOR CALIBRATION?</h4>
-                            <p class="text-sm" style="color: rgba(255,255,255,0.7);">Trackman 4 units are calibrated daily through automated systems to ensure consistent precision.This guarantees up to 99.9% accuracy for every swing, shot, and performance metric.</p>
+                            <p class="text-sm" style="color: var(--text-muted);">Trackman 4 units are calibrated daily through automated systems to ensure consistent precision. This guarantees up to 99.9% accuracy for every swing, shot, and performance metric.</p>
                         </div>
-                        <div class="glass-detail hover-scale" style="border-radius: 4px;">
+                        <div class="glass-detail hover-scale" style="border-radius: 4px; background: rgba(var(--text-rgb), 0.03); border: 1px solid var(--border);">
                             <h4 style="color: var(--secondary); margin-bottom: 8px; font-size: 0.8rem; letter-spacing: 2px;">Q: DATA EXPORT?</h4>
-                            <p class="text-sm" style="color: rgba(255,255,255,0.7);">All session data is instantly synced to the Golfic Cloud for seamless access.You can easily export your performance stats anytime through the member app.</p>
+                            <p class="text-sm" style="color: var(--text-muted);">All session data is instantly synced to the Golfic Cloud for seamless access. You can easily export your performance stats anytime through the member app.</p>
                         </div>
                     </div>
                 </div>

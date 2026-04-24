@@ -82,8 +82,11 @@
 
         /* [LOCKED] CONTACT RESPONSIVENESS */
         @media (max-width: 1024px) {
-            .contact-hero-h1 { font-size: 3.5rem !important; }
-            .inquiry-grid { gap: var(--s-10) !important; }
+            .contact-hero-h1 { font-size: 3rem !important; }
+            .inquiry-grid { gap: var(--s-8) !important; }
+            .inquiry-left { padding: 30px !important; border-radius: 32px !important; }
+            .reveal-right h3 { font-size: 1.5rem !important; }
+            .reveal-right h4 { font-size: 1rem !important; }
             .map-container { width: 1000px !important; }
             .cadence-grid { grid-template-columns: 1fr !important; gap: var(--s-10) !important; text-align: left !important; }
             .cadence-terminal { padding: 30px !important; }
@@ -114,22 +117,20 @@
     <div id="header-global"></div>
 
     <main>
-        <section class="section reveal" style="min-height: 50vh; display: flex; align-items: center; padding-top: 160px; position: relative; overflow: hidden; background: linear-gradient(0deg, #0B1215 0%, rgba(11,18,21,0.6) 100%), url('../assets/images/about/herosection-img.jpg') center/cover no-repeat;">
-            <!-- Luminous Accents -->
-            <div style="position: absolute; top: -10%; left: -5%; width: 400px; height: 400px; background: radial-gradient(circle, #12523E 0%, transparent 70%); filter: blur(80px); opacity: 0.1;"></div>
-            <div style="position: absolute; bottom: 0; right: 0; width: 600px; height: 600px; background: radial-gradient(circle, var(--secondary) 0%, transparent 70%); filter: blur(120px); opacity: 0.05;"></div>
-
-            <div class="container text-center reveal" style="position: relative; z-index: 5;">
-                <div class="reveal" style="display: flex; justify-content: center; gap: 12px; margin-bottom: var(--s-8);">
-                    <div class="badge badge-glass">OPERATIONAL_STATUS: NOMINAL</div>
-                    <div class="badge badge-outline">LATENCY: &lt; 5M</div>
+        <section class="hero hero-contact" style="background-image: url('../assets/images/CONTACT/herosection%20image.jpg');">
+            <div class="hero-content">
+                <div class="container text-center">
+                    <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: var(--s-8);">
+                        <div class="badge badge-glass">OPERATIONAL_STATUS: NOMINAL</div>
+                        <div class="badge badge-outline">LATENCY: &lt; 5M</div>
+                    </div>
+                    <h1 class="contact-hero-h1 reveal" style="font-size: var(--fs-h1); line-height: 1.1; margin-bottom: var(--s-6); font-weight: 900; letter-spacing: -2px; text-transform: uppercase;">
+                        The Gateway to the <span style="color: var(--secondary);">Sanctuary</span>
+                    </h1>
+                    <p class="contact-hero-p reveal" style="font-size: var(--fs-body-lg); max-width: 700px; margin: 0 auto; line-height: 1.8; font-weight: 300;">
+                        Our executive concierge is worldwide. Whether inquiring about founding membership or global facility integration, our team is ready to frame your future.
+                    </p>
                 </div>
-                <h1 class="contact-hero-h1 reveal" style="font-size: var(--fs-h1); line-height: 1.1; margin-bottom: var(--s-6); font-weight: 900; letter-spacing: -2px; text-transform: uppercase;">
-                    The Gateway to the <span style="color: var(--secondary);">Sanctuary</span>
-                </h1>
-                <p class="contact-hero-p reveal" style="font-size: var(--fs-body-lg); max-width: 700px; margin: 0 auto; line-height: 1.8; font-weight: 300;">
-                    Our executive concierge is worldwide. Whether inquiring about founding membership or global facility integration, our team is ready to frame your future.
-                </p>
             </div>
         </section>
         </section>
@@ -192,7 +193,7 @@
                             </div>
 
                             <div class="hover-scale" style="display: flex; gap: 20px;">
-                                <div style="width: 50px; height: 50px; background: rgba(212,175,55,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <div style="width: 50px; height: 50px; background: rgba(212,175,55,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                                     <i data-lucide="map-pin" style="width: 24px; color: var(--secondary);"></i>
                                 </div>
                                 <div>
@@ -201,17 +202,20 @@
                                     <div class="badge badge-outline" style="font-size: 0.65rem; padding: 4px 10px; margin-top: 4px;">CENTRAL HUB PLATINUM</div>
                                 </div>
                             </div>
+
+                            <div class="hover-scale" style="display: flex; gap: 20px;">
+                                <div style="width: 50px; height: 50px; background: rgba(212,175,55,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <i data-lucide="settings" style="width: 24px; color: var(--secondary);"></i>
+                                </div>
+                                <div>
+                                    <h4 style="margin-bottom: 4px;">Operational Support</h4>
+                                    <p class="text-sm text-muted">ops@golfic.com</p>
+                                    <div class="badge badge-outline" style="font-size: 0.65rem; padding: 4px 10px; margin-top: 4px;">HARDWARE ASSISTANCE</div>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Social Snippet -->
-                        <div style="margin-top: var(--s-10); padding: 30px; background: var(--bg-alt); border-radius: 20px; border: 1px solid var(--border);">
-                             <h4 style="margin-bottom: 12px;">Live Transmissions</h4>
-                             <div style="display: flex; gap: 16px;">
-                                 <i data-lucide="instagram" style="width: 20px; color: rgba(255,255,255,0.3); cursor: pointer;"></i>
-                                 <i data-lucide="twitter" style="width: 20px; color: rgba(255,255,255,0.3); cursor: pointer;"></i>
-                                 <i data-lucide="linkedin" style="width: 20px; color: rgba(255,255,255,0.3); cursor: pointer;"></i>
-                             </div>
-                        </div>
+
                     </div>
                 </div>
             </div>

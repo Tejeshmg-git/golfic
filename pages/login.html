@@ -101,21 +101,10 @@
             z-index: 10;
         }
 
-        .auth-logo {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
+        .auth-logo-centered {
+            display: inline-flex !important;
             margin-bottom: 30px;
-            color: var(--primary);
-            transition: var(--transition);
         }
-
-        body.dark-layout .auth-logo {
-            color: var(--secondary);
-        }
-
-        .auth-logo i { color: inherit; width: 28px; height: 28px; }
-        .auth-logo span { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; letter-spacing: 2px; color: inherit; }
 
         .auth-title {
             font-family: var(--font-heading);
@@ -341,9 +330,8 @@
 
     <main class="auth-portal">
         <div class="auth-card reveal">
-            <a href="../index.html" class="auth-logo reveal">
-                <i data-lucide="target"></i>
-                <span>GOLFIC</span>
+            <a href="../index.html" class="logo auth-logo-centered reveal">
+                <i data-lucide="target"></i> GOLFIC
             </a>
 
             <h1 class="auth-title">Welcome Back</h1>

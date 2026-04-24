@@ -89,21 +89,10 @@
             padding: 80px 20px 60px;
         }
 
-        .logo-box {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .logo-centered {
+            display: inline-flex !important;
             margin-bottom: 40px;
-            color: var(--primary);
-            transition: var(--transition);
         }
-
-        body.dark-layout .logo-box {
-            color: var(--secondary);
-        }
-
-        .logo-box i { color: inherit; width: 28px; height: 28px; }
-        .logo-box span { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; letter-spacing: 2px; color: inherit; }
 
         .tagline {
             font-size: 0.85rem;
@@ -320,9 +309,8 @@
     </nav>
 
     <main class="sequence-container fade-in">
-        <a href="../index.html" class="logo-box">
-            <i data-lucide="target"></i>
-            <span>GOLFIC</span>
+        <a href="../index.html" class="logo logo-centered">
+            <i data-lucide="target"></i> GOLFIC
         </a>
 
         <div class="badge badge-outline reveal" style="margin-bottom: 20px;">Next Sequence Loading</div>

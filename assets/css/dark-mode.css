@@ -8,6 +8,7 @@ body.dark-layout {
     --text-main: #FFFFFF;
     --text-muted: rgba(255, 255, 255, 0.85);
     --text-dim: rgba(255, 255, 255, 0.6);
+    --text-rgb: 255, 255, 255;
     
     --border: rgba(255, 255, 255, 0.1);
     --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.6);

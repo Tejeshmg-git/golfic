@@ -89,21 +89,10 @@
             padding: 20px;
         }
 
-        .logo-box {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .logo-centered {
+            display: inline-flex !important;
             margin-bottom: 20px;
-            color: var(--primary);
-            transition: var(--transition);
         }
-
-        body.dark-layout .logo-box {
-            color: var(--secondary);
-        }
-
-        .logo-box i { color: inherit; width: 28px; height: 28px; }
-        .logo-box span { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; letter-spacing: 2px; color: inherit; }
 
         .error-code {
             font-family: var(--font-heading);
@@ -194,9 +183,8 @@
     </nav>
 
     <main class="error-container fade-in">
-        <a href="../index.html" class="logo-box reveal">
-            <i data-lucide="target"></i>
-            <span>GOLFIC</span>
+        <a href="../index.html" class="logo logo-centered reveal">
+            <i data-lucide="target"></i> GOLFIC
         </a>
 
         <div class="error-code reveal">404</div>
