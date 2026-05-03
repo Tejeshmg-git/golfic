@@ -18,11 +18,11 @@
     --bg-alt: #F8F9FA;
     --bg-card: #FFFFFF;
     
-    --text-main: #0B1215;
-    --text-muted: #1a2a24;
-    --text-dim: #2d3e38;
+    --text-main: #000000;
+    --text-muted: #4B5563;
+    --text-dim: #6B7280;
     --text-on-primary: #FFFFFF;
-    --text-rgb: 11, 18, 21;
+    --text-rgb: 0, 0, 0;
     
     --border: #E5E7EB;
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -55,7 +55,7 @@
     --font-body: 'Inter', sans-serif;
     
     /* --- Container --- */
-    --container-max: 1440px;
+    --container-max: 1280px;
     --radius: 8px;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -74,6 +74,7 @@ html {
 
 body {
     font-family: var(--font-body);
+    font-weight: 400;
     font-size: 1rem;
     line-height: 1.6;
     color: var(--text-main);
@@ -88,7 +89,7 @@ h4 { font-size: var(--fs-h4); }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.1;
     margin-bottom: var(--s-2);
     color: var(--primary);
@@ -118,6 +119,7 @@ button, input, select, textarea {
     max-width: var(--container-max);
     margin: 0 auto;
     padding: 0 var(--s-4);
+    width: 100%;
 }
 
 .section {
@@ -259,8 +261,25 @@ button, input, select, textarea {
             min-height: auto !important;
         }
 
-        .hero-highlights, .hide-mobile {
+        .hide-mobile {
             display: none !important;
+        }
+
+        .hero-highlights {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: var(--s-4) !important;
+            align-items: center !important;
+            width: 100% !important;
+            margin-top: var(--s-6) !important;
+            transform: none !important;
+        }
+
+        .hero-highlights .hover-scale {
+            width: 100% !important;
+            max-width: 100% !important;
+            transform: none !important;
+            text-align: center !important;
         }
 
         .hero-v1 .flex, .hero-v2 .grid {
@@ -450,7 +469,7 @@ button, input, select, textarea {
     padding: 6px 16px;
     border-radius: 100px;
     font-size: 0.75rem; /* 12px */
-    font-weight: 700;
+    font-weight: 550;
     text-transform: uppercase;
     letter-spacing: 2px;
     background: var(--secondary);
@@ -485,7 +504,7 @@ body.dark-layout .badge-glass {
     padding: 6px 12px;
     border-radius: 100px;
     font-size: 0.75rem; /* 12px */
-    font-weight: 800;
+    font-weight: 550;
     letter-spacing: 1px;
     text-transform: uppercase;
     line-height: 1;
@@ -493,7 +512,7 @@ body.dark-layout .badge-glass {
 
 .text-label {
     font-size: 0.75rem; /* 12px */
-    font-weight: 800;
+    font-weight: 550;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--secondary);
@@ -570,7 +589,7 @@ body.dark-layout .badge-glass {
     justify-content: center;
     margin: 0 auto var(--s-4);
     font-size: 1.5rem;
-    font-weight: 800;
+    font-weight: 600;
     color: var(--primary);
     box-shadow: var(--shadow);
     transition: var(--transition);
@@ -696,17 +715,18 @@ header.scrolled {
 
 .nav-container {
     max-width: var(--container-max);
-    width: 95%;
     margin: 0 auto;
+    padding: 0 var(--s-4);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
 }
 
 .logo {
     font-family: var(--font-heading);
     font-size: 1.5rem;
-    font-weight: 800;
+    font-weight: 600;
     color: var(--primary);
     display: flex;
     align-items: center;
@@ -827,7 +847,7 @@ body.dark-layout .logo { color: var(--secondary); }
 
 .rtl-icon-text {
     font-size: 0.8125rem;
-    font-weight: 800;
+    font-weight: 600;
     letter-spacing: 1px;
     font-family: var(--font-body), sans-serif;
 }
@@ -890,7 +910,7 @@ body:not(.dark-layout) .rtl-icon-text {
 
 .side-nav-links a {
     font-size: 1.1rem;
-    font-weight: 700;
+    font-weight: 600;
     padding: 16px 20px;
     border-radius: 12px;
     transition: all 0.3s;

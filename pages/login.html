@@ -39,7 +39,7 @@
             left: 30px;
             right: 30px;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
             z-index: 1000;
             pointer-events: none;
@@ -47,26 +47,7 @@
 
         .auth-nav * { pointer-events: auto; }
 
-        .back-home {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text);
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: var(--transition);
-            background: rgba(255, 255, 255, 0.05);
-            padding: 8px 16px;
-            border-radius: 100px;
-            border: 1px solid var(--border);
-        }
 
-        .back-home:hover { 
-            background: var(--secondary);
-            color: #000;
-            transform: translateX(-4px);
-        }
 
         .theme-toggle-btn {
             width: 44px;
@@ -319,10 +300,7 @@
 <body class="loading">
 
     <nav class="auth-nav">
-        <a href="../index.html" class="back-home">
-            <i data-lucide="chevron-left" style="width: 18px;"></i>
-            HOME
-        </a>
+
         <button id="theme-toggle" class="theme-toggle-btn theme-toggle">
             <i data-lucide="moon"></i>
         </button>

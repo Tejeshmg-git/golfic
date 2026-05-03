@@ -29,15 +29,18 @@
             <!-- Dynamic Gradient Overlay -->
             <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(0deg, rgba(11,61,46,0.9) 0%, rgba(11,61,46,0.4) 50%, rgba(11,61,46,0.3) 100%); z-index: 0;"></div>
 
-            <div class="container" style="position: relative; z-index: 2; width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--s-2);">
-                <div class="grid grid-2" style="align-items: center;">
-                    <!-- Hero Content -->
-                    <div style="text-align: left;">
+            <div class="container" style="position: relative; z-index: 2;">
+                <div class="hero-grid-v1" style="display: grid; align-items: center; gap: var(--s-4);">
+                    <!-- Hero Text & CTAs -->
+                    <div class="hero-title-p" style="grid-area: title;">
                         <div class="badge" style="margin-bottom: var(--s-4); margin-top: var(--s-4);">
                             <i data-lucide="award" style="width: 14px;"></i> The #1 Indoor Lounge in Tee City
                         </div>
                         <h1 style="color: white; margin-bottom: var(--s-4); line-height: 1.1; max-width: 600px;">Master Your <span class="text-accent" style="color: var(--secondary);">Swing</span> Any Season</h1>
                         <p class="text-lg" style="margin-bottom: var(--s-8); color: rgba(255,255,255,0.9); max-width: 520px;">Experience the world's most iconic courses with Trackman precision. Play, improve, and socialize in a premium environment designed for golfers.</p>
+                    </div>
+
+                    <div class="hero-ctas" style="grid-area: ctas;">
                         <div class="flex" style="gap: var(--s-3);">
                             <a href="pages/booking.html" class="btn btn-gold" style="padding: var(--s-2) var(--s-6);">Book Your Bay</a>
                             <a href="pages/services.html" class="btn" style="border: 1px solid rgba(255,255,255,0.3); color: white; padding: var(--s-2) var(--s-6);">Explore Services</a>
@@ -45,18 +48,80 @@
                     </div>
 
                     <!-- Floating Technology Highlights -->
-                    <div class="hero-highlights reveal-right" style="display: flex; flex-direction: column; gap: var(--s-4); align-items: flex-end; justify-content: center; height: 100%;">
+                    <div class="hero-highlights reveal-right" style="grid-area: highlights; display: flex; flex-direction: column; gap: var(--s-4); align-items: flex-end; justify-content: center; height: 100%;">
                         <div class="hover-scale" style="background: var(--secondary); padding: var(--s-4) var(--s-6); border-radius: var(--radius); width: 280px; box-shadow: var(--shadow); color: #0B1215;">
-                            <h4 style="color: #0B1215; margin-bottom: 4px; font-size: 1.125rem; font-weight: 800;">Trackman 4 Tech</h4>
+                            <h4 style="color: #0B1215; margin-bottom: 4px; font-size: 1.125rem; font-weight: 600;">Trackman 4 Tech</h4>
                             <p class="text-xs" style="color: white; line-height: 1.4; font-weight: 500;">Dual radar technology capturing 10,000 frames per second.</p>
                         </div>
                         <div class="hover-scale" style="background: var(--secondary); padding: var(--s-4) var(--s-6); border-radius: var(--radius); width: 280px; transform: translateX(-30px); box-shadow: var(--shadow); color: #0B1215;">
-                            <h4 style="color: #0B1215; margin-bottom: 4px; font-size: 1.125rem; font-weight: 800;">100+ Iconic Courses</h4>
+                            <h4 style="color: #0B1215; margin-bottom: 4px; font-size: 1.125rem; font-weight: 600;">100+ Iconic Courses</h4>
                             <p class="text-xs" style="color: white; line-height: 1.4; font-weight: 500;">Play Pebble Beach to St. Andrews in stunning 4K rendering.</p>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <style>
+                /* Desktop Grid Configuration */
+                .hero-grid-v1 {
+                    grid-template-areas: 
+                        "title highlights"
+                        "ctas highlights";
+                    grid-template-columns: 1.2fr 1fr;
+                }
+
+                /* Mobile Grid Configuration (Highlights above CTAs) */
+                @media (max-width: 768px) {
+                    .hero-grid-v1 {
+                        display: grid !important;
+                        grid-template-areas: 
+                            "title"
+                            "highlights"
+                            "ctas";
+                        grid-template-columns: 1fr;
+                        text-align: center;
+                        min-height: 80vh;
+                        align-content: center; /* Center content vertically in grid */
+                    }
+                    .hero-title-p { 
+                        text-align: center; 
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                    .hero-title-p h1, .hero-title-p p {
+                        margin-left: auto !important;
+                        margin-right: auto !important;
+                        text-align: center !important;
+                    }
+                    .hero-highlights { 
+                        align-items: center !important; 
+                        margin: var(--s-8) 0 !important;
+                        width: 100% !important;
+                    }
+                    .hero-highlights .hover-scale { 
+                        width: 100% !important; 
+                        max-width: 320px !important;
+                        transform: none !important; 
+                        text-align: center !important;
+                        padding: var(--s-3) var(--s-4) !important;
+                    }
+                    .hero-highlights .text-xs {
+                        margin: 0 !important;
+                    }
+                    .hero-ctas .flex { 
+                        flex-direction: column !important; 
+                        justify-content: center !important; 
+                        width: 100%;
+                        max-width: 320px;
+                        margin: 0 auto;
+                        gap: var(--s-3) !important;
+                    }
+                    .hero-ctas .btn {
+                        width: 100% !important;
+                    }
+                }
+            </style>
 
             <!-- Scroll Indicator -->
             <div style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); animation: bounce 2s infinite; display: flex; flex-direction: column; align-items: center; gap: 4px;">
@@ -158,17 +223,17 @@
                     <div class="card hover-scale" style="padding: var(--s-6); background: var(--bg-alt); border-radius: 32px; border: 1px solid var(--border);">
                         <img src="assets/images/home-v1/Craft Cocktails.jpg" style="border-radius: 20px; margin-bottom: var(--s-4); width: 100%; height: 200px; object-fit: cover;">
                         <h4 style="margin-bottom: var(--s-2);">Craft Cocktails</h4>
-                        <p class="text-sm text-muted">Professionally mixed drinks for every palate.</p>
+                        <p class="text-sm text-muted">Experience artistry in every glass with our signature mixology collection. Our master bartenders use only hand-pressed juices, house-made infusions, and the finest small-batch spirits.</p>
                     </div>
                     <div class="card hover-scale" style="padding: var(--s-6); background: var(--bg-alt); border-radius: 32px; border: 1px solid var(--border);">
                         <img src="assets/images/home-v1/Gourmet Bites.jpg" style="border-radius: 20px; margin-bottom: var(--s-4); width: 100%; height: 200px; object-fit: cover;">
                         <h4 style="margin-bottom: var(--s-2);">Gourmet Bites</h4>
-                        <p class="text-sm text-muted">Small plates designed for sharing with friends.</p>
+                        <p class="text-sm text-muted">Fuel your competitive spirit with elevated culinary offerings. From artisanal charcuterie to chef-inspired sliders, every plate is designed for sharing and crafted with fresh ingredients.</p>
                     </div>
                     <div class="card hover-scale center-tablet" style="padding: var(--s-6); background: var(--bg-alt); border-radius: 32px; border: 1px solid var(--border);">
                         <img src="assets/images/home-v1/Local Brews.jpg" style="border-radius: 20px; margin-bottom: var(--s-4); width: 100%; height: 200px; object-fit: cover;">
                         <h4 style="margin-bottom: var(--s-2);">Local Brews</h4>
-                        <p class="text-sm text-muted">A rotating tap of the region's best breweries.</p>
+                        <p class="text-sm text-muted">Discover regional flavors through our evolving tap list. We partner with prestigious local microbreweries to bring you an exclusive selection of seasonal ales and lagers.</p>
                     </div>
                 </div>
             </div>
@@ -183,25 +248,28 @@
                 </div>
                 <div class="grid grid-diamond grid-3">
                     <!-- Bay Service -->
-                    <div class="service-card hover-scale" style="background: rgba(255,255,255,0.05); padding: var(--s-8); border-radius: var(--radius); text-align: center; border: 1px solid rgba(255,255,255,0.1); transition: var(--transition);">
-                        <i data-lucide="monitor" class="text-accent" style="width: 56px; height: 56px; margin-bottom: var(--s-4);"></i>
+                    <div class="service-card hover-scale" style="background: rgba(255,255,255,0.05); padding: var(--s-6); border-radius: var(--radius); text-align: center; border: 1px solid rgba(255,255,255,0.1); transition: var(--transition);">
+                        <img src="assets/images/home-v1/Simulator Bays.jpg" style="border-radius: 12px; margin-bottom: var(--s-4); width: 100%; height: 200px; object-fit: cover;">
+
                         <h3 style="color: white; margin-bottom: var(--s-3);">Simulator Bays</h3>
                         <p class="text-sm" style="color: rgba(255,255,255,0.7);">High-precision technology for practice and play. Over 100 world-renowned courses rendered in stunning 4K.</p>
                         <a href="pages/booking.html" class="btn btn-gold" style="margin-top: var(--s-6); width: 100%;">Book a Bay</a>
                     </div>
                     <!-- Leagues Service -->
-                    <div class="service-card hover-scale" style="background: rgba(255,255,255,0.05); padding: var(--s-8); border-radius: var(--radius); text-align: center; border: 1px solid var(--secondary); transition: var(--transition);">
-                        <i data-lucide="users" class="text-accent" style="width: 56px; height: 56px; margin-bottom: var(--s-4);"></i>
+                    <div class="service-card hover-scale" style="background: rgba(255,255,255,0.05); padding: var(--s-6); border-radius: var(--radius); text-align: center; border: 1px solid var(--secondary); transition: var(--transition);">
+                        <img src="assets/images/home-v1/Social Leagues.jpg" style="border-radius: 12px; margin-bottom: var(--s-4); width: 100%; height: 200px; object-fit: cover;">
+
                         <h3 style="color: white; margin-bottom: var(--s-3);">Social Leagues</h3>
-                        <p class="text-sm" style="color: rgba(255,255,255,0.7);">Join the community. Compete in weekly tournaments and social networking events with local golfers.</p>
-                        <a href="pages/services.html#circuit" class="btn btn-secondary" style="margin-top: var(--s-6); width: 100%; border-color: rgba(255,255,255,0.3); color: white;">View Leagues</a>
+                        <p class="text-sm" style="color: rgba(255,255,255,0.7);">Join the community. Compete in weekly tournaments and the social networking events with our local golfers.</p>
+                        <a href="pages/services.html#circuit" class="btn btn-gold" style="margin-top: var(--s-6); width: 100%;">View Leagues</a>
                     </div>
                     <!-- Lessons Service -->
-                    <div class="service-card hover-scale center-tablet" style="background: rgba(255,255,255,0.05); padding: var(--s-8); border-radius: var(--radius); text-align: center; border: 1px solid rgba(255,255,255,0.1); transition: var(--transition);">
-                        <i data-lucide="graduation-cap" class="text-accent" style="width: 56px; height: 56px; margin-bottom: var(--s-4);"></i>
+                    <div class="service-card hover-scale center-tablet" style="background: rgba(255,255,255,0.05); padding: var(--s-6); border-radius: var(--radius); text-align: center; border: 1px solid rgba(255,255,255,0.1); transition: var(--transition);">
+                        <img src="assets/images/home-v1/Pro Coaching.jpg" style="border-radius: 12px; margin-bottom: var(--s-4); width: 100%; height: 200px; object-fit: cover;">
+
                         <h3 style="color: white; margin-bottom: var(--s-3);">Pro Coaching</h3>
                         <p class="text-sm" style="color: rgba(255,255,255,0.7);">Expert guidance from PGA-certified instructors. Data-driven improvement paths to fast-track your growth.</p>
-                        <a href="pages/services.html" class="btn btn-secondary" style="margin-top: var(--s-6); width: 100%; border-color: rgba(255,255,255,0.3); color: white;">Find a Coach</a>
+                        <a href="pages/services.html" class="btn btn-gold" style="margin-top: var(--s-6); width: 100%;">Find a Coach</a>
                     </div>
                 </div>
             </div>

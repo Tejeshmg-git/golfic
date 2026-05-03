@@ -19,7 +19,7 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 24px;
-            padding: var(--s-8);
+            padding: var(--s-6);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
@@ -68,9 +68,8 @@
 
         /* [LOCKED] LAPTOP/DESKTOP TIER (1025PX - 1440PX) */
         @media (max-width: 1440px) {
-            .booking-step-card { padding: var(--s-6); }
+            .booking-step-card { padding: var(--s-4); }
             .hero-booking-grid { gap: var(--s-8) !important; }
-            .booking-hero-h1 { font-size: 32px !important; }
             .hover-snapshot-stack { height: 300px !important; }
             .provisions-grid { grid-template-columns: repeat(2, 1fr) !important; }
             .provision-card { 
@@ -79,6 +78,15 @@
                 gap: 15px !important; 
                 align-items: center !important; 
             }
+        }
+
+        /* Hero Specific Overrides */
+        .hero-booking {
+            background-image: url('../assets/images/booking/herosection-img.jpg') !important;
+        }
+        
+        .hero-booking::before {
+            background: rgba(0, 0, 0, 0.5) !important;
         }
 
         /* [LOCKED] TABLET TIER (481PX - 1024PX) */
@@ -290,67 +298,50 @@
 
     <main>
         <!-- SECTION 1: HERO -->
-        <section class="hero hero-booking" style="background: #0B1215;">
+        <section class="hero hero-booking">
             <div class="hero-content">
                 <div class="container" style="position: relative; z-index: 5;">
-                    <div class="grid grid-2 hero-booking-grid" style="gap: var(--s-12); align-items: center; max-width: 1200px; margin: 0 auto;">
-                        
-                        <!-- Left: Tactical Briefing -->
-                        <div class="hero-booking-left" style="text-align: left;">
-                            <!-- Trendy Tech Labels -->
-                            <div class="badge-container" style="display: flex; gap: 8px; margin-bottom: var(--s-6);">
-                                <div class="badge badge-glass">ACCURACY: 99.9%</div>
-                                <div class="badge badge-outline">STATUS: VANGUARD</div>
-                            </div>
-     
-                            <h1 class="booking-hero-h1" style="color: white; font-size: 40px; line-height: 1.1; margin-bottom: var(--s-6); font-weight: 900; letter-spacing: -1.5px; text-transform: uppercase;">
-                                Reserve The <span style="color: var(--secondary);">Apex</span>
-                            </h1>
-                            <p style="color: rgba(255,255,255,0.6); font-size: 1rem; max-width: 440px; margin-bottom: var(--s-8); line-height: 1.6; font-weight: 300;">
-                                Configure your industrial-spec sanctuary and secure your slot in the world's most sophisticated diagnostic hub.
-                            </p>
-                            <a href="#suites" class="btn btn-gold no-toast" style="padding: 16px 32px; border-radius: 4px; font-weight: 900; letter-spacing: 2px; font-size: 0.8rem;">CONFIGURE YOUR SESSION</a>
+                    <div class="text-center" style="max-width: 800px; margin: 0 auto;">
+                        <!-- Tactical Labels -->
+                        <div class="badge-container" style="display: flex; gap: 8px; margin-bottom: var(--s-6); justify-content: center;">
+                            <div class="badge badge-glass" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 100px; font-size: 0.65rem; font-weight: 550; color: white;">ACCURACY: 99.9%</div>
+                            <div class="badge badge-outline" style="border: 1px solid var(--secondary); padding: 4px 12px; border-radius: 100px; font-size: 0.65rem; font-weight: 550; color: var(--secondary);">STATUS: VANGUARD</div>
                         </div>
- 
-                    <!-- Right: Interactive Organic Snapshot Stack -->
-                    <div class="hover-snapshot-stack" style="position: relative; height: 350px; width: 100%; display: flex; align-items: center; justify-content: center; perspective: 1200px;">
-                        
-                        <!-- Floating Accents -->
-                        <i data-lucide="sparkles" style="position: absolute; top: 10%; right: 15%; width: 15px; color: var(--secondary); opacity: 0.3;"></i>
-                        <i data-lucide="plus" style="position: absolute; bottom: 15%; left: 5%; width: 10px; color: var(--secondary); opacity: 0.2;"></i>
 
-                        <!-- Card 1: Primary Snapshot (Left) -->
-                        <div class="hover-snapshot" style="position: absolute; top: 50%; left: 0; width: 320px; height: 220px; background: url('../assets/images/home-v1/Accuracy.jpg') center/cover; border: 1px solid var(--secondary); border-radius: 32px; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; transform: translateY(-50%) rotate(-4deg); z-index: 3; box-shadow: 0 40px 80px rgba(0,0,0,0.6);"></div>
-                        
-                        <!-- Card 2: Secondary Detail (Right Top) -->
-                        <div class="hover-snapshot" style="position: absolute; top: 0; right: 0; width: 240px; height: 160px; background: url('../assets/images/service/The%20Technology%20Core.jpg') center/cover; border: 1px solid rgba(255,255,255,0.1); border-radius: 32px; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; transform: rotate(5deg); z-index: 1; box-shadow: 0 30px 60px rgba(0,0,0,0.4);"></div>
-                        
-                        <!-- Card 3: Technical Context (Right Bottom) -->
-                        <div class="hover-snapshot" style="position: absolute; bottom: 0; right: 40px; width: 240px; height: 160px; background: url('../assets/images/about/System%20Standard.jpg') center/cover; border: 1px solid rgba(255,255,255,0.1); border-radius: 32px; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; transform: rotate(-3deg); z-index: 2; box-shadow: 0 20px 40px rgba(0,0,0,0.3);"></div>
+                        <h1 class="booking-hero-h1" style="color: white; font-size: var(--fs-h1); line-height: 1.1; margin-bottom: var(--s-6); font-weight: 600; letter-spacing: -2px; text-transform: uppercase;">
+                            Reserve The <span style="color: var(--secondary);">Apex</span>
+                        </h1>
+                        <p style="color: rgba(255,255,255,0.8); font-size: var(--fs-body-lg); margin-bottom: var(--s-10); line-height: 1.8; font-weight: 300; max-width: 600px; margin-left: auto; margin-right: auto;">
+                            Configure your industrial-spec sanctuary and secure your slot in the world's most sophisticated diagnostic hub. Engineering precision for the elite practitioner.
+                        </p>
+                        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                            <a href="#suites" class="btn btn-gold no-toast" style="padding: 18px 40px; border-radius: 4px; font-weight: 600; letter-spacing: 2px; font-size: 0.85rem;">CONFIGURE SESSION</a>
+                            <a href="signup.html" class="btn" style="padding: 18px 40px; border-radius: 4px; font-weight: 600; letter-spacing: 2px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.2); color: white; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);">JOIN VANGUARD</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-            <style>
-                .hover-snapshot:hover {
-                    z-index: 100 !important;
-                    width: 340px !important;
-                    height: 220px !important;
-                    transform: scale(1.1) rotate(0) !important;
-                    box-shadow: 0 80px 160px rgba(0,0,0,0.8) !important;
-                    border-color: var(--secondary) !important;
-                }
-            </style>
 
             <!-- Geometric Grid Overlay -->
-            <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none;"></div>
+            <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 50px 50px; pointer-events: none; z-index: 1;"></div>
+            
+            <!-- Bottom Fade (Neutral) -->
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 180px; background: linear-gradient(to top, #0B1215, transparent); z-index: 2;"></div>
         </section>
 
         <!-- SECTION 2: SUITE SELECTION -->
         <section id="suites" class="section" style="padding-top: 0;">
             <div class="container">
-                 <div style="margin-top: var(--s-10); margin-bottom: var(--s-10);">
-                    <h2 style="font-size: 40px; text-align: center;">Select <span style="color: var(--secondary);">Suite Profile</span></h2>
+                 <div style="margin-top: var(--s-10); margin-bottom: var(--s-12); text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <div class="reveal" style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: var(--s-4);">
+                        <div style="width: 30px; height: 1px; background: var(--secondary);"></div>
+                        <span class="text-label" style="color: var(--secondary); letter-spacing: 4px;">CONFIGURATION TIER</span>
+                        <div style="width: 30px; height: 1px; background: var(--secondary);"></div>
+                    </div>
+                    <h2 class="reveal" style="font-size: var(--fs-h2); margin-bottom: var(--s-4);">Select <span style="color: var(--secondary);">Suite Profile</span></h2>
+                    <p class="text-muted reveal" style="font-size: 1.1rem; line-height: 1.6; max-width: 600px; margin: 0 auto; font-weight: 300;">
+                        Choose your specialized environment. Each suite is calibrated for specific training outcomes and levels of biometric feedback.
+                    </p>
                  </div>
                 <div class="grid suites-grid" style="grid-template-columns: repeat(3, 1fr); gap: var(--s-6);">
                     <div class="booking-step-card">
@@ -363,7 +354,7 @@
                             <li style="margin-bottom: 8px;">• Italian Leather Seating</li>
                         </ul>
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span style="font-family: monospace; font-weight: 900; color: var(--secondary);">$120/HR</span>
+                            <span style="font-family: monospace; font-weight: 600; color: var(--secondary);">$120/HR</span>
                             <button class="btn btn-gold btn-select" style="padding: 10px 20px; font-size: 0.7rem;">SELECT</button>
                         </div>
                     </div>
@@ -373,12 +364,12 @@
                         <h4 style="margin-bottom: 8px;">Pro Performance Suite</h4>
                         <p class="text-sm text-muted" style="margin-bottom: var(--s-4);">The ultimate diagnostic hub for serious competitive refinement.</p>
                         <ul style="list-style: none; padding: 0; margin-bottom: var(--s-6); font-size: 0.85rem; color: var(--text-muted);">
-                            <li style="margin-bottom: 8px;">• 10,000 FPS High-Speed Video Integration</li>
-                            <li style="margin-bottom: 8px;">• NVIDIA RTX Real-Time Course Rendering</li>
+                            <li style="margin-bottom: 8px;">• 10,000 FPS High-Speed Integration</li>
+                            <li style="margin-bottom: 8px;">• NVIDIA RTX Real-Time Rendering</li>
                             <li style="margin-bottom: 8px;">• Biometric Pressure Mapping Plates</li>
                         </ul>
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span style="font-family: monospace; font-weight: 900; color: var(--secondary);">$180/HR</span>
+                            <span style="font-family: monospace; font-weight: 600; color: var(--secondary);">$180/HR</span>
                             <button class="btn btn-gold btn-select" style="padding: 10px 20px; font-size: 0.7rem;">SELECTED</button>
                         </div>
                     </div>
@@ -387,12 +378,12 @@
                         <h4 style="margin-bottom: 8px;">Executive Lounge</h4>
                         <p class="text-sm text-muted" style="margin-bottom: var(--s-4);">Engineered for social reciprocity and high-stakes hospitality.</p>
                         <ul style="list-style: none; padding: 0; margin-bottom: var(--s-6); font-size: 0.85rem; color: var(--text-muted);">
-                            <li style="margin-bottom: 8px;">• 5.1 Surround Sound Atmospheric Audio</li>
+                            <li style="margin-bottom: 8px;">• 5.1 Surround Atmospheric Audio</li>
                             <li style="margin-bottom: 8px;">• Dedidicated In-Suite Drinks Valet</li>
                             <li style="margin-bottom: 8px;">• 120" Social Broadcast Screen</li>
                         </ul>
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span style="font-family: monospace; font-weight: 900; color: var(--secondary);">$250/HR</span>
+                            <span style="font-family: monospace; font-weight: 600; color: var(--secondary);">$250/HR</span>
                             <button class="btn btn-gold btn-select" style="padding: 10px 20px; font-size: 0.7rem;">SELECT</button>
                         </div>
                     </div>
@@ -410,7 +401,7 @@
                         <p class="text-xs text-muted" style="line-height: 1.6; margin-bottom: var(--s-8);">Peak performance hours (7AM-4PM) are prioritized for technical diagnostics. Social hours (6PM-Midnight) include complimentary drink pairings from our Rare Spirits Library.</p>
                         <div style="background: var(--bg-card); padding: 20px; border-radius: 16px; border: 1px solid var(--border);">
                             <div style="display: flex; justify-content: space-between; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 12px;">
-                                <span style="font-weight: 700; color: white;">APRIL 21, 2026</span>
+                                <span style="font-weight: 600; color: white;">APRIL 21, 2026</span>
                                 <span class="status-badge status-ready">LIVE_SYNC</span>
                             </div>
                              <div class="grid time-slots-grid" style="grid-template-columns: repeat(4, 1fr); gap: 10px;">
