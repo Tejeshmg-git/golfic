@@ -727,7 +727,7 @@ header.scrolled {
     font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--primary);
+    color: var(--secondary);
     display: flex;
     align-items: center;
     gap: var(--s-1);

@@ -83,7 +83,7 @@ function injectGlobalComponents() {
                         <button class="icon-btn rtl-toggle hide-mobile" aria-label="Toggle RTL">
                             <span class="rtl-icon-text">RTL</span>
                         </button>
-                        <a href="${pagesPrefix}login.html" class="btn btn-primary">Login</a>
+                        <a href="${pagesPrefix}login.html" class="btn btn-gold">Login</a>
 
                         <button class="icon-btn hamburger" id="menu-open">
                             <i data-lucide="menu"></i>
